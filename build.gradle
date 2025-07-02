@@ -44,6 +44,9 @@ distributions {
       into ('config') {
         from 'dist/config'
       }
+      into ('processes') {
+        from 'dist/processes'
+      }
       from 'README.md'
       into('web') {
         from 'web'

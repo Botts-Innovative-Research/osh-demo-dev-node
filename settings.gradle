@@ -4,6 +4,7 @@ def sensorDir = "$includeDir/osh-addons/sensors"
 def persistenceDir = "$includeDir/osh-addons/persistence"
 def processDir = "$includeDir/osh-addons/processing"
 def serviceDir = "$includeDir/osh-addons/services"
+def commDir = "$includeDir/osh-addons/comm"
 
 def toolsDir = "$rootDir/tools"
 
@@ -15,27 +16,59 @@ includeBuild gradle.oshCoreDir
 include 'sensorhub-test'
 project(':sensorhub-test').projectDir = "$toolsDir/sensorhub-test" as File
 
+// Sensor Drivers
 
-// osh-storage
-//include '[storage-module-name]'
-//project(':[storage-module-name]').projectDir = "$persistenceDir/[path]/[storage-module-name]" as File
-//
-// Ex:
-//
-//include 'sensorhub-storage-compat'
-//project(':sensorhub-storage-compat').projectDir = "$persistenceDir/sensorhub-storage-compat" as File
-//
-//include 'sensorhub-storage-h2'
-//project(':sensorhub-storage-h2').projectDir = "$persistenceDir/sensorhub-storage-h2" as File
+include 'sensorhub-driver-onvif'
+project(':sensorhub-driver-onvif').projectDir = "$sensorDir/video/sensorhub-driver-onvif" as File
 
-// osh-services
-//include '[service-name]'
-//project(':[service-name]').projectDir = "$serviceDir/[path]/[service-name]" as File
-//
-// Ex:
-//
-//include 'sensorhub-service-video'
-//project(':sensorhub-service-video').projectDir = "$serviceDir/sensorhub-service-video" as File
+include 'sensorhub-driver-ffmpeg'
+project(':sensorhub-driver-ffmpeg').projectDir = "$sensorDir/video/sensorhub-driver-ffmpeg" as File
+
+include 'sensorhub-driver-videocam'
+project(':sensorhub-driver-videocam').projectDir = "$sensorDir/video/sensorhub-driver-videocam" as File
+
+include 'sensorhub-driver-v4l'
+project(':sensorhub-driver-v4l').projectDir = "$sensorDir/video/sensorhub-driver-v4l" as File
+
+include 'sensorhub-driver-fakeweather'
+project(':sensorhub-driver-fakeweather').projectDir = "$sensorDir/simulated/sensorhub-driver-fakeweather" as File
+
+include 'sensorhub-driver-f20'
+project(':sensorhub-driver-f20').projectDir = "$sensorDir/others/sensorhub-driver-f20" as File
+
+// Processing Modules
+
+include 'sensorhub-process-fakeweather'
+project(':sensorhub-process-fakeweather').projectDir = "$processDir/sensorhub-process-fakeweather" as File
+
+include 'sensorhub-process-ffmpeg'
+project(':sensorhub-process-ffmpeg').projectDir = "$processDir/sensorhub-process-ffmpeg" as File
+
+include 'sensorhub-process-geoloc'
+project(':sensorhub-process-geoloc').projectDir = "$processDir/sensorhub-process-geoloc" as File
+
+include 'sensorhub-process-vecmath'
+project(':sensorhub-process-vecmath').projectDir = "$processDir/sensorhub-process-vecmath" as File
+
+include 'sensorhub-process-helpers'
+project(':sensorhub-process-helpers').projectDir = "$processDir/sensorhub-process-helpers" as File
+
+// Comm modules
+include 'sensorhub-comm-mqtt'
+project(':sensorhub-comm-mqtt').projectDir = "$commDir/sensorhub-comm-mqtt" as File
+
+include 'sensorhub-comm-ip-zeroconf'
+project(':sensorhub-comm-ip-zeroconf').projectDir = "$commDir/sensorhub-comm-ip-zeroconf" as File
+
+// Services
+include 'sensorhub-service-video'
+project(':sensorhub-service-video').projectDir = "$serviceDir/sensorhub-service-video" as File
+
+include 'sensorhub-service-mqtt-hivemq'
+project(':sensorhub-service-mqtt-hivemq').projectDir = "$serviceDir/sensorhub-service-mqtt-hivemq" as File
+
+include 'sensorhub-service-consys-mqtt'
+project(':sensorhub-service-consys-mqtt').projectDir = "$serviceDir/sensorhub-service-consys-mqtt" as File
 
 // osh-sensor-drivers
 //include '[driver-name]'
@@ -62,6 +95,16 @@ subprojects.files.each { File f ->
 
 FileTree processProjects = fileTree("$rootDir/processing").include('**/build.gradle')
 processProjects.files.each { File f ->
+    File projectFolder = f.parentFile
+    if (projectFolder != rootDir) {
+        String projectName = ':' + projectFolder.name
+        include projectName
+        project(projectName).projectDir = projectFolder
+    }
+}
+
+FileTree otherModules = fileTree("$rootDir/other-modules").include('**/build.gradle')
+otherModules.files.each { File f ->
     File projectFolder = f.parentFile
     if (projectFolder != rootDir) {
         String projectName = ':' + projectFolder.name

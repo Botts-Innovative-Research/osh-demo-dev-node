@@ -15,4 +15,26 @@ dependencies {
 
     // You must make sure that your project is enabled by including it in the settings.gradle file.
     // Do not include this "sensorhub-test" project in build.gradle as it will be packaged with your build if you do!
+
+    // Drivers
+    implementation project(':sensorhub-driver-onvif')
+    implementation project(':sensorhub-driver-ffmpeg')
+    implementation project(':sensorhub-driver-fakeweather')
+    implementation project(':sensorhub-driver-f20')
+    implementation project(':sensorhub-driver-universalcontroller')
+    implementation project(':sensorhub-driver-civil-iot')
+
+    // Processes
+    implementation project(':sensorhub-process-fakeweather')
+    implementation project(':sensorhub-process-ffmpeg')
+    implementation project(':sensorhub-process-geoloc')
+    implementation project(':sensorhub-process-universalcontroller')
+
+    // Services
+    implementation project(':sensorhub-service-video')
+    implementation project(':sensorhub-service-mqtt-hivemq')
+    implementation project(':sensorhub-service-consys-mqtt')
+
+    // Comm modules
+    implementation project(':sensorhub-comm-ip-zeroconf')
 }
