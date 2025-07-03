@@ -9,7 +9,7 @@ https://github.com/opensensorhub/osh-node-dev-template.git
 
 #### Requirements
 
-This project requires Java 17 or higher.
+This project requires Java 21 or higher.
 
 For quick download and installation: [OpenLogic OpenJDK Downloads](https://www.openlogic.com/openjdk-downloads)
  

@@ -1,8 +1,22 @@
+buildscript {
+  dependencies {
+    classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:6.1.0"
+  }
+}
+
+plugins {
+  id "biz.aQute.bnd" version "6.1.0" apply false
+}
+
 apply from: gradle.oshCoreDir + '/common.gradle'
 description = ''
 
 allprojects {
   version = '0.0.0'
+}
+
+repositories {
+  mavenCentral()
 }
 
 subprojects {
@@ -53,6 +67,7 @@ distributions {
       }
       into('lib') {
         from project.configurations.runtimeClasspath
+        from 'other-modules/jars'
       }
       subprojects.each { p ->
         into('config/sensorML') {
@@ -62,5 +77,31 @@ distributions {
     }
   }
 }
+
+tasks.register("harvestBundles", Copy) {
+  destinationDir = layout.buildDirectory.dir("bundles").get().asFile
+//  from project(':sensorhub-driver-template').osgi.outputs
+  subprojects.forEach {pr -> { from pr.osgi.outputs }}
+}
+
+tasks.register("genOSGiIndex", aQute.bnd.gradle.Index) {
+  destinationDirectory = file(layout.buildDirectory.dir("bundles"))
+  gzip = false
+  bundles = fileTree(destinationDirectory) {
+    include "**/*-bundle.jar"
+    builtBy tasks.withType(Jar)
+  }
+}
+
+tasks.register("bundlesDistZip", Zip) {
+  destinationDirectory = file(layout.buildDirectory.dir("distributions"))
+  from layout.buildDirectory.dir("bundles").get().asFile
+  include '*'
+  include '*/*' //to include contents of a folder present inside bundles directory
+  archiveBaseName = 'osgi-bundles-' + project.version + '.zip'
+}
+
+genOSGiIndex.dependsOn(harvestBundles)
+bundlesDistZip.dependsOn(genOSGiIndex)
 
 apply from: gradle.oshCoreDir + '/release.gradle'

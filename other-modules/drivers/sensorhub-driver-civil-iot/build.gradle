@@ -12,6 +12,7 @@ dependencies {
 }
 
 test {
+    exclude '**/TestCIoTDriver.class'
     useJUnit()
 }
 

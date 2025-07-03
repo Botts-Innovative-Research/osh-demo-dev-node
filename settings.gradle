@@ -70,15 +70,6 @@ project(':sensorhub-service-mqtt-hivemq').projectDir = "$serviceDir/sensorhub-se
 include 'sensorhub-service-consys-mqtt'
 project(':sensorhub-service-consys-mqtt').projectDir = "$serviceDir/sensorhub-service-consys-mqtt" as File
 
-// osh-sensor-drivers
-//include '[driver-name]'
-//project(':[driver-name]').projectDir = "$sensorDir/[path]/[driver-name]" as File
-//
-// Ex:
-//
-//include 'sensorhub-driver-videocam'
-//project(':sensorhub-driver-videocam').projectDir = "$sensorDir/video/sensorhub-driver-videocam" as File
-
 // Project modules
 
 // Include all folders with build.gradle as subprojects
