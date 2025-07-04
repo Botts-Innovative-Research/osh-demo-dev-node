@@ -30,6 +30,9 @@ dependencies {
     implementation project(':sensorhub-process-geoloc')
     implementation project(':sensorhub-process-universalcontroller')
 
+    // Clients
+    implementation project(':sensorhub-client-civil-iot')
+
     // Services
     implementation project(':sensorhub-service-video')
     implementation project(':sensorhub-service-mqtt-hivemq')

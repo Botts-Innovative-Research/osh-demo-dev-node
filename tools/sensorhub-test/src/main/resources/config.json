@@ -12,9 +12,9 @@
     "trustStorePath": ".keystore/ssl_trust",
     "enableCORS": true,
     "id": "5cb05c9c-9e08-4fa1-8731-ffaa5846bdc1",
+    "autoStart": true,
     "moduleClass": "org.sensorhub.impl.service.HttpServer",
-    "name": "HTTP Server",
-    "autoStart": true
+    "name": "HTTP Server"
   },
   {
     "objClass": "org.sensorhub.impl.security.BasicSecurityRealmConfig",
@@ -82,9 +82,9 @@
       }
     ],
     "id": "bd112969-8838-4f62-8d10-1edf1baa6669",
+    "autoStart": true,
     "moduleClass": "org.sensorhub.impl.security.BasicSecurityRealm",
-    "name": "Users",
-    "autoStart": true
+    "name": "Users"
   },
   {
     "objClass": "org.sensorhub.ui.AdminUIConfig",
@@ -92,10 +92,11 @@
     "bundleRepoUrls": [],
     "customPanels": [],
     "customForms": [],
+    "enableLandingPage": false,
     "id": "5cb05c9c-9123-4fa1-8731-ffaa51489678",
+    "autoStart": true,
     "moduleClass": "org.sensorhub.ui.AdminUIModule",
-    "name": "Admin UI",
-    "autoStart": true
+    "name": "Admin UI"
   },
   {
     "objClass": "org.sensorhub.impl.service.sos.SOSServiceConfig",
@@ -163,9 +164,9 @@
     "enableSOAP": true,
     "endPoint": "/sos",
     "id": "5cb05c9c-9e08-4fa1-8731-ff41e246bdc1",
+    "autoStart": true,
     "moduleClass": "org.sensorhub.impl.service.sos.SOSService",
-    "name": "SOS Service",
-    "autoStart": true
+    "name": "SOS Service"
   },
   {
     "objClass": "org.sensorhub.impl.database.system.SystemDriverDatabaseConfig",
@@ -181,16 +182,17 @@
       "useCompression": false,
       "readOnly": false,
       "compactOnClose": false,
-      "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase",
-      "autoStart": false
+      "autoStart": false,
+      "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase"
     },
     "systemUIDs": [],
+    "autoPurgeConfig": [],
     "minCommitPeriod": 10000,
     "databaseNum": 1,
     "id": "29f2b677-95b1-4499-8e5b-459839ec3eb6",
+    "autoStart": true,
     "moduleClass": "org.sensorhub.impl.database.system.SystemDriverDatabase",
-    "name": "System Driver Database",
-    "autoStart": true
+    "name": "System Driver Database"
   },
   {
     "objClass": "org.sensorhub.impl.service.consys.ConSysApiServiceConfig",
@@ -203,6 +205,7 @@
     "enableTransactional": false,
     "maxResponseLimit": 100000,
     "defaultLiveTimeout": 600.0,
+    "uriPrefixMap": [],
     "ogcCapabilitiesInfo": {
       "objClass": "org.sensorhub.impl.service.ogc.OGCServiceConfig$CapabilitiesInfo",
       "serviceProvider": {
@@ -219,8 +222,39 @@
     "enableSOAP": true,
     "endPoint": "/api",
     "id": "2659dc3b-f243-477e-b43f-214b75cc8c57",
+    "autoStart": true,
     "moduleClass": "org.sensorhub.impl.service.consys.ConSysApiService",
-    "name": "Connected Systems API Service",
-    "autoStart": true
+    "name": "Connected Systems API Service"
+  },
+  {
+    "objClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabaseConfig",
+    "indexObsLocation": false,
+    "storagePath": "sta.db",
+    "memoryCacheSize": 5120,
+    "autoCommitBufferSize": 1024,
+    "autoCommitPeriod": 10,
+    "autoCompactFillRate": 40,
+    "idProviderType": "SEQUENTIAL",
+    "useCompression": false,
+    "readOnly": false,
+    "compactOnClose": false,
+    "databaseNum": 2,
+    "id": "5e6d2ff4-c388-4c63-9af2-30b9ee7149ff",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase",
+    "name": "New H2 Historical Obs Database"
+  },
+  {
+    "objClass": "com.botts.impl.client.sensorthings.SensorThingsIngestConfig",
+    "staBaseResourcePathList": [
+      "https://sta.ci.taiwan.gov.tw/STA_Rain/v1.0/",
+      "https://sta.ci.taiwan.gov.tw/STA_Weather/v1.0/",
+      "https://sta.ci.taiwan.gov.tw/STA_AirQuality_v2/v1.0/"
+    ],
+    "databaseID": "5e6d2ff4-c388-4c63-9af2-30b9ee7149ff",
+    "id": "db0fcb27-d149-4d3a-9f47-1aa8eaa91a7a",
+    "autoStart": false,
+    "moduleClass": "com.botts.impl.client.sensorthings.SensorThingsIngestModule",
+    "name": "New SensorThings API Ingest Service"
   }
 ]
