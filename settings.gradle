@@ -18,6 +18,12 @@ project(':sensorhub-test').projectDir = "$toolsDir/sensorhub-test" as File
 
 // Sensor Drivers
 
+include 'sensorhub-driver-axis'
+project(':sensorhub-driver-axis').projectDir = "$sensorDir/video/sensorhub-driver-axis" as File
+
+include 'sensorhub-driver-rtpcam'
+project(':sensorhub-driver-rtpcam').projectDir = "$sensorDir/video/sensorhub-driver-rtpcam" as File
+
 include 'sensorhub-driver-onvif'
 project(':sensorhub-driver-onvif').projectDir = "$sensorDir/video/sensorhub-driver-onvif" as File
 

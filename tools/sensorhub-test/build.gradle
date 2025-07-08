@@ -18,6 +18,7 @@ dependencies {
 
     // Drivers
     implementation project(':sensorhub-driver-onvif')
+    implementation project(':sensorhub-driver-axis')
     implementation project(':sensorhub-driver-ffmpeg')
     implementation project(':sensorhub-driver-fakeweather')
     implementation project(':sensorhub-driver-f20')
