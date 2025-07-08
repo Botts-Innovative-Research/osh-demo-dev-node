@@ -32,6 +32,7 @@ dependencies {
   implementation 'org.sensorhub:sensorhub-webui-core:' + oshCoreVersion
   implementation 'org.sensorhub:sensorhub-service-consys:' + oshCoreVersion
   implementation project(':sensorhub-driver-template')
+  implementation project(':sensorhub-comm-mavlink2')
 
 //  implementation project(':[storage-module-name]')
 //  implementation project(':[service-name]')
@@ -60,6 +61,9 @@ distributions {
       }
       into ('processes') {
         from 'dist/processes'
+      }
+      into ('natives') {
+        from 'dist/natives'
       }
       from 'README.md'
       into('web') {
