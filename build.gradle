@@ -32,6 +32,31 @@ dependencies {
   implementation 'org.sensorhub:sensorhub-webui-core:' + oshCoreVersion
   implementation 'org.sensorhub:sensorhub-service-consys:' + oshCoreVersion
   implementation project(':sensorhub-driver-template')
+
+  // Drivers
+  implementation project(':sensorhub-driver-onvif')
+  implementation project(':sensorhub-driver-ffmpeg')
+  implementation project(':sensorhub-driver-fakeweather')
+  implementation project(':sensorhub-driver-f20')
+  implementation project(':sensorhub-driver-universalcontroller')
+  implementation project(':sensorhub-driver-civil-iot')
+
+  // Processes
+  implementation project(':sensorhub-process-fakeweather')
+  implementation project(':sensorhub-process-ffmpeg')
+  implementation project(':sensorhub-process-geoloc')
+  implementation project(':sensorhub-process-universalcontroller')
+
+  // Clients
+  implementation project(':sensorhub-client-civil-iot')
+
+  // Services
+  implementation project(':sensorhub-service-video')
+  implementation project(':sensorhub-service-mqtt-hivemq')
+  implementation project(':sensorhub-service-consys-mqtt')
+
+  // Comm modules
+  implementation project(':sensorhub-comm-ip-zeroconf')
   implementation project(':sensorhub-comm-mavlink2')
 
 //  implementation project(':[storage-module-name]')
