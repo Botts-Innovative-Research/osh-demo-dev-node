@@ -88,10 +88,6 @@ public class CIoTDriver extends AbstractSensorModule<CIoTDriverConfig> {
         generateUniqueID("urn:osh:driver:civiliot:video:", config.serialNumber);
         generateXmlID("CIVIL_IOT_VIDEO", config.serialNumber);
 
-        // TODO: Remove the following. This is just because IntelliJ certs r broken
-        System.setProperty("javax.net.ssl.trustStore", "/home/earocorn/Desktop/truststore.jks");
-        System.setProperty("javax.net.ssl.trustStorePassword", "changeit");
-
         try {
             sensorThingsService = new SensorThingsService(new URL(staEndpointUrl));
         } catch (MalformedURLException e) {
