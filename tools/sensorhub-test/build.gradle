@@ -18,11 +18,13 @@ dependencies {
 
     // Drivers
     implementation project(':sensorhub-driver-onvif')
+    implementation project(':sensorhub-driver-axis')
     implementation project(':sensorhub-driver-ffmpeg')
     implementation project(':sensorhub-driver-fakeweather')
     implementation project(':sensorhub-driver-f20')
     implementation project(':sensorhub-driver-universalcontroller')
     implementation project(':sensorhub-driver-civil-iot')
+    implementation project(':sensorhub-comm-mavlink2')
 
     // Processes
     implementation project(':sensorhub-process-fakeweather')

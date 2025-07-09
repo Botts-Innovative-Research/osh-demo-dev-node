@@ -11,6 +11,5 @@
 **/*.iml
 /storage/
 /.moduledata/
-**/*.json.bak.*
-/*.db
 /*.dat
+*.json.bak.*
