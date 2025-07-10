@@ -6,23 +6,9 @@ wait
 echo "Sys update/upgrade done"
 
 # install build tools
-sudo apt-get install build-essential cmake git zip unzip python3-pip -y &
+sudo apt-get install build-essential cmake git zip unzip python3-pip openjdk-17-jdk -y &
 wait
 echo "pre-req tools installed"
-
-# install sdkman!
-curl -s "https://get.sdkman.io" | bash &
-wait
-echo "sdkman! installed"
-# source
-source ./.sdkman/bin/sdkman-init.sh &
-wait
-echo "skdman sourced"
-
-#install java
-sdk install java 21.0.6-tem &
-wait
-echo "java installed"
 
 # Clone OSH Demo Dev Node w/ new Mavlink Driver
 git clone --recursive https://github.com/Botts-Innovative-Research/osh-demo-dev-node.git &
