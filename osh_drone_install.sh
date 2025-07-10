@@ -4,7 +4,7 @@
 sudo apt update && sudo apt upgrade -y
 
 # install build tools
-sudo apt-get install build-essential cmake git -y
+sudo apt-get install build-essential cmake git zip unzip -y
 
 # install sdkman!
 curl -s "https://get.sdkman.io" | bash
