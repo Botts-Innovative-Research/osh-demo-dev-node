@@ -6,7 +6,7 @@ wait
 echo "Sys update/upgrade done"
 
 # install build tools
-sudo apt-get install build-essential cmake git zip unzip python3-pip openjdk-17-jdk -y &
+sudo apt-get install build-essential cmake git zip unzip python3-pip openjdk-21-jdk -y &
 wait
 echo "pre-req tools installed"
 
