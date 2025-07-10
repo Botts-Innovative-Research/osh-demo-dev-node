@@ -15,7 +15,7 @@ curl -s "https://get.sdkman.io" | bash &
 wait
 echo "sdkman! installed"
 # source
-source $HOME/.sdkman/bin/sdkman-init.sh &
+source ~/.sdkman/bin/sdkman-init.sh &
 wait
 echo "skdman sourced"
 
