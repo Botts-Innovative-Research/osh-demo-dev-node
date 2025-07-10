@@ -180,10 +180,11 @@ public class CIoTDriver extends AbstractSensorModule<CIoTDriverConfig> {
     @Override
     public void cleanup() throws SensorHubException {
         super.cleanup();
-        for (var poller : pollers) {
+        for (var poller : pollers)
             poller.stop();
-            poller.cleanup();
-        }
+
+        if (executor != null)
+            executor.shutdownNow();
     }
 
     @Override

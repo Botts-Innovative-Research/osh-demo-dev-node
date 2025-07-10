@@ -80,15 +80,8 @@ public class CIoTPoller  {
             pollTask.cancel(true);
     }
 
-    public void cleanup() {
-        // Shutdown scheduler
-        if (executor != null && !executor.isShutdown())
-            executor.shutdownNow();
-    }
-
     public void setExecutor(ScheduledExecutorService executor) {
         stop();
-        cleanup();
         this.executor = executor;
     }
 
