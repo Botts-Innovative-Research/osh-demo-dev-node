@@ -53,8 +53,9 @@ Tools/environment_install/install-prereqs-ubuntu.sh -y
 # Add Taiwan as pre-defined location in Ardupilot
 echo "Taiwan=24.178772,120.649633,0,0" >> Tools/autotest/locations.txt
 
-# Add additional mav outs
-touch -p ~/.mavproxy/mavinit.scr
+# Add additional mav out
+mkdir ~/.mavproxy
+touch ~/.mavproxy/mavinit.scr
 echo "output add 127.0.0.1:14540" >> ~/.mavproxy/mavinit.scr
 echo "output add 127.0.0.1:14560" >> ~/.mavproxy/mavinit.scr
 echo "output add 127.0.0.1:14550" >> ~/.mavproxy/mavinit.scr
