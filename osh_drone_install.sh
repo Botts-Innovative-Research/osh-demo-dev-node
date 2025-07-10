@@ -6,7 +6,7 @@ wait
 echo "Sys update/upgrade done"
 
 # install build tools
-sudo apt-get install build-essential cmake git zip unzip -y &
+sudo apt-get install build-essential cmake git zip unzip python3-pip -y &
 wait
 echo "pre-req tools installed"
 
@@ -15,7 +15,7 @@ curl -s "https://get.sdkman.io" | bash &
 wait
 echo "sdkman! installed"
 # source
-source ~/.sdkman/bin/sdkman-init.sh &
+source ./.sdkman/bin/sdkman-init.sh &
 wait
 echo "skdman sourced"
 
