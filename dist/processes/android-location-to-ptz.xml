@@ -35,19 +35,8 @@
           <sml:typeOf xlink:href="urn:osh:process:datasource:datastream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:android:device:5b4a49b2cd6aab2d</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:android:device:69a93cfe8e6b3fa6</sml:setValue>
               <sml:setValue ref="parameters/outputName">gps_data</sml:setValue>
-            </sml:Settings>
-          </sml:configuration>
-        </sml:SimpleProcess>
-      </sml:component>
-      <sml:component name="trupulse">
-        <sml:SimpleProcess gml:id="P1b">
-          <sml:typeOf xlink:href="urn:osh:process:datasource:datastream"/>
-          <sml:configuration>
-            <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:lasertech:trupulse360:5b4a49b2cd6aab2d</sml:setValue>
-              <sml:setValue ref="parameters/outputName">targetLoc</sml:setValue>
             </sml:Settings>
           </sml:configuration>
         </sml:SimpleProcess>
@@ -58,9 +47,9 @@
           <sml:configuration>
             <sml:Settings>
               <sml:setValue ref="inputs/targetSize">1.0</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/lat">24.1787570</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/lon">120.6498810</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/alt">97.54</sml:setValue>
+              <sml:setValue ref="parameters/camLocation/lat">34.66595666</sml:setValue>
+              <sml:setValue ref="parameters/camLocation/lon">-86.78059092</sml:setValue>
+              <sml:setValue ref="parameters/camLocation/alt">169.0806884765625</sml:setValue>
               <sml:setValue ref="parameters/camOrientation/heading">0.0</sml:setValue>
               <sml:setValue ref="parameters/camOrientation/pitch">0.0</sml:setValue>
               <sml:setValue ref="parameters/camOrientation/roll">0.0</sml:setValue>
@@ -74,7 +63,7 @@
           <sml:typeOf xlink:href="urn:osh:process:datasink:commandstream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:dahua:cam:1G0215CGAK00046</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:axis:cam:00408CFBA322</sml:setValue>
               <sml:setValue ref="parameters/inputName">ptzControl</sml:setValue>
             </sml:Settings>
           </sml:configuration>
