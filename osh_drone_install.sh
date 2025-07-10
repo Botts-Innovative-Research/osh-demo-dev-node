@@ -13,7 +13,7 @@ curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 #install java
-sdk install java 21.0.6-oracle
+sdk install java 21.0.6-tem
 
 
 # Clone OSH Demo Dev Node w/ new Mavlink Driver
@@ -54,7 +54,7 @@ Tools/environment_install/install-prereqs-ubuntu.sh -y
 echo "Taiwan=24.178772,120.649633,0,0" >> Tools/autotest/locations.txt
 
 # Add additional mav outs
-touch ~/.mavproxy/mavinit.scr
+touch -p ~/.mavproxy/mavinit.scr
 echo "output add 127.0.0.1:14540" >> ~/.mavproxy/mavinit.scr
 echo "output add 127.0.0.1:14560" >> ~/.mavproxy/mavinit.scr
 echo "output add 127.0.0.1:14550" >> ~/.mavproxy/mavinit.scr
