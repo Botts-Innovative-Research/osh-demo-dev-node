@@ -25,8 +25,9 @@ project(':sensorhub-driver-axis').projectDir = "$sensorDir/video/sensorhub-drive
 include 'sensorhub-driver-rtpcam'
 project(':sensorhub-driver-rtpcam').projectDir = "$sensorDir/video/sensorhub-driver-rtpcam" as File
 
-include 'sensorhub-driver-onvif'
-project(':sensorhub-driver-onvif').projectDir = "$sensorDir/video/sensorhub-driver-onvif" as File
+// TODO: Include this when final changes are merged, for now use local onvif driver under other-modules/drivers
+//include 'sensorhub-driver-onvif'
+//project(':sensorhub-driver-onvif').projectDir = "$sensorDir/video/sensorhub-driver-onvif" as File
 
 include 'sensorhub-driver-ffmpeg'
 project(':sensorhub-driver-ffmpeg').projectDir = "$sensorDir/video/sensorhub-driver-ffmpeg" as File

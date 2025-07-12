@@ -332,5 +332,86 @@
     "autoStart": true,
     "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase",
     "name": "Connected Systems Database"
+  },
+  {
+    "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig",
+    "networkConfig": {
+      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$OnvifConfig",
+      "autoRemoteHost": [
+        "http://192.168.0.91:2020/onvif/device_service"
+      ],
+      "onvifPath": "/onvif/device_service",
+      "remotePort": 2020,
+      "user": "oshtest",
+      "password": "oshtest",
+      "enableTLS": false,
+      "remoteHost": "192.168.0.91",
+      "localAddress": "AUTO"
+    },
+    "streamingConfig": {
+      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$StreamingOptions",
+      "streamEndpoint": "rtsp://192.168.0.91:554/stream2",
+      "autoStreamEndpoint": [
+        "rtsp://192.168.0.91:554/stream1",
+        "rtsp://192.168.0.91:554/stream2",
+        "rtsp://192.168.0.91:554/stream8"
+      ],
+      "codec": "H_264"
+    },
+    "ptzRanges": {
+      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$PTZRanges",
+      "panMax": 180,
+      "panMin": -180,
+      "invertPan": true,
+      "tiltMax": 90,
+      "tiltMin": -59,
+      "invertTilt": false,
+      "zoomMax": 1,
+      "zoomMin": 0
+    },
+    "lastUpdated": "2025-07-12T13:19:21.307+0800",
+    "id": "f5ffee01-95c4-4cee-bab1-5f558cc3419a",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraDriver",
+    "name": "New ONVIF Driver"
+  },
+  {
+    "objClass": "org.sensorhub.impl.comm.mavlink2.MavLinkNetworkConfig",
+    "networkInterface": "utun7",
+    "id": "6ed84a84-592d-421c-9a67-7f5fc4f54726",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.comm.mavlink2.MavLinkCommNetwork",
+    "name": "New MAVLink"
+  },
+  {
+    "objClass": "org.sensorhub.impl.sensor.SensorSystemConfig",
+    "uniqueID": "8105965d-dcf6-40ad-a2fb-a719083e7054",
+    "subsystems": [
+      {
+        "objClass": "org.sensorhub.impl.sensor.SensorSystemConfig$SystemMember",
+        "config": {
+          "objClass": "org.sensorhub.impl.comm.mavlink2.UnmannedConfig",
+          "serialNumber": "sensor001",
+          "lastUpdated": "2025-07-12T13:26:34.806+0800",
+          "id": "c6fd4095-a96e-4706-ab1a-7f9427f74354",
+          "autoStart": true,
+          "moduleClass": "org.sensorhub.impl.comm.mavlink2.UnmannedSystem",
+          "name": "Unmanned System"
+        }
+      }
+    ],
+    "lastUpdated": "2025-07-12T13:26:34.787+0800",
+    "id": "1406a8d8-ccc5-4508-a1ba-be02fd7318cb",
+    "autoStart": true,
+    "moduleClass": "org.sensorhub.impl.sensor.SensorSystem",
+    "name": "MAVLink Connected Systems"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "dist/processes/drone-location-to-ptz-onvif.xml",
+    "id": "623b092c-949c-4467-9e1f-0e2120dd9704",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "New SensorML Stream Process"
   }
 ]
