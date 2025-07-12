@@ -9,7 +9,9 @@ https://github.com/opensensorhub/osh-node-dev-template.git
 
 #### Requirements
 
-This project requires Java 21 or higher.
+This project requires Java 17 or higher.
+
+**WARNING** Java 21+ may be used, but you may encounter an authentication bug with camera drivers (Axis, Dahua, some others), client modules, and the SWE virtual sensor.
 
 For quick download and installation: [OpenLogic OpenJDK Downloads](https://www.openlogic.com/openjdk-downloads)
  
