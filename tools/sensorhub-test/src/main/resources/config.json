@@ -261,9 +261,7 @@
     "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig",
     "networkConfig": {
       "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$OnvifConfig",
-      "autoRemoteHost": [
-        "http://192.168.0.91:2020/onvif/device_service"
-      ],
+      "autoRemoteHost": [],
       "onvifPath": "/onvif/device_service",
       "remotePort": 2020,
       "user": "oshtest",
@@ -334,6 +332,37 @@
     "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
     "sensorML": "dist/processes/drone-location-to-ptz-onvif.xml",
     "id": "623b092c-949c-4467-9e1f-0e2120dd9704",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "New SensorML Stream Process"
+  },
+  {
+    "objClass": "com.botts.impl.sensor.universalcontroller.UniversalControllerConfig",
+    "serialNumber": "001",
+    "primaryControllerIndex": 0,
+    "controllerLayerConfig": {
+      "objClass": "com.botts.impl.sensor.universalcontroller.ControllerLayerConfig",
+      "presets": [],
+      "lastUpdated": "2025-07-13T15:05:06.115+0800",
+      "autoStart": false
+    },
+    "numControlStreams": 0,
+    "primaryControlStreamIndex": 0,
+    "pollingRate": 250,
+    "controllerTypes": [
+      "GAMEPAD"
+    ],
+    "controllerSearchTime": 15,
+    "lastUpdated": "2025-07-13T15:05:06.114+0800",
+    "id": "e5a64e1f-9011-47ec-b52e-ae47f8fe52bd",
+    "autoStart": false,
+    "moduleClass": "com.botts.impl.sensor.universalcontroller.UniversalControllerSensor",
+    "name": "New Universal Controller Driver"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "dist/processes/controller-to-mavlink.xml",
+    "id": "a7a4d2ff-282e-44d9-83c3-a5f51f9d83b5",
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
     "name": "New SensorML Stream Process"
