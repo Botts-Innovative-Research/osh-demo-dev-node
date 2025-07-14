@@ -1,12 +1,33 @@
 #!/bin/bash
 
+set -e
+
 #update/upgrade the system
 sudo apt update && sudo apt upgrade -y &
 wait
 echo "Sys update/upgrade done"
 
+# set up adoptium
+sudo apt install -y wget apt-transport-https
+wait
+echo "apt-transport-https installed"
+
+sudo wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/adoptium.gpg > /dev/null
+
+sudo echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
+wait
+echo "Added adoptium to sources list"
+
+#update again to get adoptium repo
+sudo apt update
+wait
+echo "Updated to get adoptium"
+
+echo "setting JAVA_HOME"
+echo "export JAVA_HOME=$(realpath $(dirname $(readlink -f $(which java)))/../)" >> ~/.bashrc
+
 # install build tools
-sudo apt-get install build-essential cmake git zip unzip python3-pip openjdk-21-jdk -y &
+sudo apt-get install build-essential cmake git zip unzip python3-pip temurin-17-jdk temurin-21-jdk -y &
 wait
 echo "pre-req tools installed"
 
@@ -14,12 +35,6 @@ echo "pre-req tools installed"
 git clone --recursive https://github.com/Botts-Innovative-Research/osh-demo-dev-node.git &
 wait
 echo "osh demo node cloned"
-
-# Build OSH
-cd osh-demo-dev-node
-./gradlew build -x test -x osgi &
-wait
-echo "osh built"
 
 # Clone MAVSDK
 cd ..
