@@ -35,7 +35,7 @@
                     <sml:typeOf xlink:href="urn:osh:process:datasource:stream"/>
                     <sml:configuration>
                         <sml:Settings>
-                            <sml:setValue ref="parameters/producerURI">urn:osh:sensor:universalcontroller</sml:setValue>
+                            <sml:setValue ref="parameters/producerURI">urn:osh:sensor:universalcontroller001</sml:setValue>
                         </sml:Settings>
                     </sml:configuration>
                 </sml:SimpleProcess>
@@ -50,28 +50,39 @@
                     <sml:typeOf xlink:href="urn:osh:process:universalcontrollerptz"/>
                 </sml:SimpleProcess>
             </sml:component>
-            <sml:component name="dahuaprocess">
-                <sml:SimpleProcess gml:id="F5">
-                    <sml:typeOf xlink:href="urn:osh:process:universalcontrollerptz"/>
-                    <sml:configuration>
-                        <sml:Settings>
-                            <sml:setValue ref="parameters/systemUID">urn:axis:cam:00408CA0FF1C</sml:setValue>
-                            <sml:setValue ref="parameters/inputName">ptzControl</sml:setValue>
-                        </sml:Settings>
-                    </sml:configuration>
-                </sml:SimpleProcess>
-            </sml:component>
             <sml:component name="axiscamcontrolrpan">
             <sml:SimpleProcess gml:id="F6">
                 <sml:typeOf xlink:href="urn:osh:process:datasink:commandstream"/>
                 <sml:configuration>
                     <sml:Settings>
-                        <sml:setValue ref="parameters/systemUID">urn:axis:cam:00408CA0FF1C</sml:setValue>
+                        <sml:setValue ref="parameters/systemUID">urn:axis:cam:00408CFBA322</sml:setValue>
                         <sml:setValue ref="parameters/inputName">ptzControl</sml:setValue>
                     </sml:Settings>
                 </sml:configuration>
             </sml:SimpleProcess>
         </sml:component>
+            <sml:component name="axiscamcontrolrtilt">
+                <sml:SimpleProcess gml:id="F7">
+                    <sml:typeOf xlink:href="urn:osh:process:datasink:commandstream"/>
+                    <sml:configuration>
+                        <sml:Settings>
+                            <sml:setValue ref="parameters/systemUID">urn:axis:cam:00408CFBA322</sml:setValue>
+                            <sml:setValue ref="parameters/inputName">ptzControl</sml:setValue>
+                        </sml:Settings>
+                    </sml:configuration>
+                </sml:SimpleProcess>
+            </sml:component>
+            <sml:component name="axiscamcontrolrzoom">
+                <sml:SimpleProcess gml:id="F8">
+                    <sml:typeOf xlink:href="urn:osh:process:datasink:commandstream"/>
+                    <sml:configuration>
+                        <sml:Settings>
+                            <sml:setValue ref="parameters/systemUID">urn:axis:cam:00408CFBA322</sml:setValue>
+                            <sml:setValue ref="parameters/inputName">ptzControl</sml:setValue>
+                        </sml:Settings>
+                    </sml:configuration>
+                </sml:SimpleProcess>
+            </sml:component>
         </sml:ComponentList>
     </sml:components>
     <sml:connections>
@@ -108,12 +119,6 @@
             </sml:connection>
             <sml:connection>
                 <sml:Link>
-                    <sml:source ref="components/primaryselector/outputs/componentRecord"/>
-                    <sml:destination ref="components/dahuaprocess/inputs/componentRecord"/>
-                </sml:Link>
-            </sml:connection>
-            <sml:connection>
-                <sml:Link>
                     <sml:source ref="components/axisprocess/outputs/rpan"/>
                     <sml:destination ref="components/axiscamcontrolrpan/inputs/ptzControl/rpan"/>
                 </sml:Link>
@@ -128,24 +133,6 @@
                 <sml:Link>
                     <sml:source ref="components/axisprocess/outputs/rzoom"/>
                     <sml:destination ref="components/axiscamcontrolrzoom/inputs/ptzControl/rzoom"/>
-                </sml:Link>
-            </sml:connection>
-            <sml:connection>
-                <sml:Link>
-                    <sml:source ref="components/dahuaprocess/outputs/rpan"/>
-                    <sml:destination ref="components/dahuacontrolrpan/inputs/ptzControl/rpan"/>
-                </sml:Link>
-            </sml:connection>
-            <sml:connection>
-                <sml:Link>
-                    <sml:source ref="components/dahuaprocess/outputs/rtilt"/>
-                    <sml:destination ref="components/dahuacontrolrtilt/inputs/ptzControl/rtilt"/>
-                </sml:Link>
-            </sml:connection>
-            <sml:connection>
-                <sml:Link>
-                    <sml:source ref="components/dahuaprocess/outputs/rzoom"/>
-                    <sml:destination ref="components/dahuacontrolrzoom/inputs/ptzControl/rzoom"/>
                 </sml:Link>
             </sml:connection>
             <sml:connection>

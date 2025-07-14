@@ -41,26 +41,15 @@
           </sml:configuration>
         </sml:SimpleProcess>
       </sml:component>
-      <sml:component name="trupulse">
-        <sml:SimpleProcess gml:id="P1b">
-          <sml:typeOf xlink:href="urn:osh:process:datasource:datastream"/>
-          <sml:configuration>
-            <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:lasertech:trupulse360:69a93cfe8e6b3fa6</sml:setValue>
-              <sml:setValue ref="parameters/outputName">targetloc</sml:setValue>
-            </sml:Settings>
-          </sml:configuration>
-        </sml:SimpleProcess>
-      </sml:component>
       <sml:component name="geoPointing">
         <sml:SimpleProcess gml:id="P2">
           <sml:typeOf xlink:href="urn:osh:process:PtzGeoPointing"/>
           <sml:configuration>
             <sml:Settings>
               <sml:setValue ref="inputs/targetSize">1.0</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/lat">34.66595666</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/lon">-86.78059092</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/alt">169.0806884765625</sml:setValue>
+              <sml:setValue ref="parameters/camLocation/lat">24.17858</sml:setValue>
+              <sml:setValue ref="parameters/camLocation/lon">120.649793</sml:setValue>
+              <sml:setValue ref="parameters/camLocation/alt">140</sml:setValue>
               <sml:setValue ref="parameters/camOrientation/heading">0.0</sml:setValue>
               <sml:setValue ref="parameters/camOrientation/pitch">0.0</sml:setValue>
               <sml:setValue ref="parameters/camOrientation/roll">0.0</sml:setValue>

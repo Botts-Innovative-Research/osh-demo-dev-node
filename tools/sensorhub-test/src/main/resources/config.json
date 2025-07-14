@@ -118,6 +118,7 @@
     "maxFois": 10,
     "defaultLiveTimeout": 600.0,
     "templateTimeout": 600,
+    "databaseID": "f7c4593b-ef06-4a6d-8120-3edd9b39bd30",
     "security": {
       "objClass": "org.sensorhub.api.security.SecurityConfig",
       "enableAccessControl": true,
@@ -196,6 +197,7 @@
   },
   {
     "objClass": "org.sensorhub.impl.service.consys.ConSysApiServiceConfig",
+    "databaseID": "ffec2ddf-571c-43ea-b9f6-e88646342b09",
     "customFormats": [],
     "security": {
       "objClass": "org.sensorhub.api.security.SecurityConfig",
@@ -334,7 +336,7 @@
     "id": "623b092c-949c-4467-9e1f-0e2120dd9704",
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
-    "name": "New SensorML Stream Process"
+    "name": "drone ptz onvif"
   },
   {
     "objClass": "com.botts.impl.sensor.universalcontroller.UniversalControllerConfig",
@@ -365,6 +367,125 @@
     "id": "a7a4d2ff-282e-44d9-83c3-a5f51f9d83b5",
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
-    "name": "New SensorML Stream Process"
+    "name": "Controller to Drone"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "dist/processes/drone-location-to-ptz.xml",
+    "id": "17ebcdee-c839-4c35-804f-535ec5b2d3ec",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "Drone to PTZ"
+  },
+  {
+    "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig",
+    "http": {
+      "objClass": "org.sensorhub.impl.comm.HTTPConfig",
+      "remotePort": 80,
+      "user": "oshtest",
+      "password": "oshtest",
+      "enableTLS": false,
+      "remoteHost": "192.168.0.90",
+      "localAddress": "AUTO"
+    },
+    "rtsp": {
+      "objClass": "org.sensorhub.impl.sensor.rtpcam.RTSPConfig",
+      "videoPath": "/axis-media/media.amp?videocodec=h264",
+      "localUdpPort": 20100,
+      "onlyConnectRtsp": false,
+      "remotePort": 554,
+      "user": "oshtest",
+      "password": "oshtest",
+      "enableTLS": false,
+      "remoteHost": "192.168.0.90",
+      "localAddress": "AUTO"
+    },
+    "connection": {
+      "objClass": "org.sensorhub.impl.comm.RobustIPConnectionConfig",
+      "checkReachability": true,
+      "connectTimeout": 3000,
+      "reconnectPeriod": 10000,
+      "reconnectAttempts": 0
+    },
+    "video": {
+      "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig$VideoConfig",
+      "resolution": "_4CIF",
+      "frameRate": 0,
+      "grayscale": false
+    },
+    "ptz": {
+      "objClass": "org.sensorhub.impl.sensor.videocam.ptz.PtzConfig",
+      "presets": []
+    },
+    "position": {
+      "objClass": "org.sensorhub.api.sensor.PositionConfig"
+    },
+    "enableH264": false,
+    "enableMJPEG": true,
+    "lastUpdated": "2025-07-14T13:20:46.221+0800",
+    "id": "b4f99362-def9-4875-8dca-e654776f8866",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.sensor.axis.AxisCameraDriver",
+    "name": "New Axis Video Camera"
+  },
+  {
+    "objClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabaseConfig",
+    "indexObsLocation": false,
+    "storagePath": "csapi.dat",
+    "memoryCacheSize": 5120,
+    "autoCommitBufferSize": 1024,
+    "autoCommitPeriod": 10,
+    "autoCompactFillRate": 40,
+    "idProviderType": "SEQUENTIAL",
+    "useCompression": false,
+    "readOnly": false,
+    "compactOnClose": false,
+    "databaseNum": 3,
+    "id": "ffec2ddf-571c-43ea-b9f6-e88646342b09",
+    "autoStart": true,
+    "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase",
+    "name": "New H2 Historical Obs Database"
+  },
+  {
+    "objClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabaseConfig",
+    "indexObsLocation": false,
+    "storagePath": "sos.dat",
+    "memoryCacheSize": 5120,
+    "autoCommitBufferSize": 1024,
+    "autoCommitPeriod": 10,
+    "autoCompactFillRate": 40,
+    "idProviderType": "SEQUENTIAL",
+    "useCompression": false,
+    "readOnly": false,
+    "compactOnClose": false,
+    "databaseNum": 4,
+    "id": "f7c4593b-ef06-4a6d-8120-3edd9b39bd30",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase",
+    "name": "New H2 Historical Obs Database"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "dist/processes/laser-range-finder-to-ptz.xml",
+    "id": "c761af3c-5dbe-431b-8b5b-09cf32c58f3d",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "LRF to PTZ"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "dist/processes/android-location-to-ptz.xml",
+    "id": "f408e53c-8e11-4f78-932a-e0dbbd9ece9d",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "Android to PTZ"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "dist/processes/controller-ptz.xml",
+    "id": "a26e3593-9ee5-4106-93d6-d4613e60be27",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "Controller PTZ"
   }
 ]
