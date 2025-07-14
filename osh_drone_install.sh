@@ -31,15 +31,10 @@ sudo apt-get install build-essential cmake git zip unzip python3-pip temurin-17-
 wait
 echo "pre-req tools installed"
 
-# Clone OSH Demo Dev Node w/ new Mavlink Driver
-git clone --recursive https://github.com/Botts-Innovative-Research/osh-demo-dev-node.git
-wait
-echo "osh demo node cloned"
-
 # Clone MAVSDK
 cd ..
 git clone https://github.com/mavlink/MAVSDK.git
-wait 
+wait
 echo "MAVSDK cloned"
 
 cd MAVSDK
