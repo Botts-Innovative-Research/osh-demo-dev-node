@@ -3,7 +3,7 @@
 set -e
 
 #update/upgrade the system
-sudo apt update && sudo apt upgrade -y &
+sudo apt update && sudo apt upgrade -y
 wait
 echo "Sys update/upgrade done"
 
@@ -27,73 +27,73 @@ echo "setting JAVA_HOME"
 echo "export JAVA_HOME=$(realpath $(dirname $(readlink -f $(which java)))/../)" >> ~/.bashrc
 
 # install build tools
-sudo apt-get install build-essential cmake git zip unzip python3-pip temurin-17-jdk temurin-21-jdk -y &
+sudo apt-get install build-essential cmake git zip unzip python3-pip temurin-17-jdk temurin-21-jdk -y
 wait
 echo "pre-req tools installed"
 
 # Clone OSH Demo Dev Node w/ new Mavlink Driver
-git clone --recursive https://github.com/Botts-Innovative-Research/osh-demo-dev-node.git &
+git clone --recursive https://github.com/Botts-Innovative-Research/osh-demo-dev-node.git
 wait
 echo "osh demo node cloned"
 
 # Clone MAVSDK
 cd ..
-git clone https://github.com/mavlink/MAVSDK.git &
+git clone https://github.com/mavlink/MAVSDK.git
 wait 
 echo "MAVSDK cloned"
 
 cd MAVSDK
-git submodule update --init --recursive &
+git submodule update --init --recursive
 wait
 echo "MAVSDK submodules updated"
 
 # Build MAVSDK, including Server
-cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_MAVSDK_SERVER=ON -Bbuild -S. &
+cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_MAVSDK_SERVER=ON -Bbuild -S.
 wait
 echo "MAVSDK build config"
 
-cmake --build build -j8 &
+cmake --build build -j8
 wait
 echo "MAVSDK built"
 
 # Install MAVSDK, including Server
-sudo cmake --build build --target install &
+sudo cmake --build build --target install
 wait
 echo "MAVSDK installed"
 
 # Update LDCONFIG
-sudo ldconfig &
+sudo ldconfig
 wait
 echo "ldconfig updated"
 
 # Clone Ardupilot
 cd ..
-git clone https://github.com/ArduPilot/ardupilot.git &
+git clone https://github.com/ArduPilot/ardupilot.git
 wait
 echo "ardupilot cloned"
 
 # Install Ardupilot prereqs
 cd ardupilot
-Tools/environment_install/install-prereqs-ubuntu.sh -y &
+Tools/environment_install/install-prereqs-ubuntu.sh -y
 wait
 echo "ardupilot pre-reqs installed"
 
 #reload path
-. ~/.profile &
+. ~/.profile
 wait
 echo "path reloaded"
 
 # Add Taiwan as pre-defined location in Ardupilot
-echo "Taiwan=24.178772,120.649633,0,0" >> Tools/autotest/locations.txt &
+echo "Taiwan=24.178772,120.649633,0,0" >> Tools/autotest/locations.txt
 wait
 echo "Taiwan added as location to Ardupilot"
 
 # Add additional mav out
-mkdir ~/.mavproxy &
+mkdir ~/.mavproxy
 wait
 echo ".mavproxy directory created"
 
-touch ~/.mavproxy/mavinit.scr &
+touch ~/.mavproxy/mavinit.scr
 wait
 echo "mavinit.scr created"
 
