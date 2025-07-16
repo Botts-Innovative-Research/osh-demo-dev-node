@@ -464,5 +464,44 @@
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
     "name": "Controller PTZ"
+  },
+  {
+    "objClass": "org.sensorhub.impl.comm.mavlink2.UnmannedConfig",
+    "serialNumber": "sensor001",
+    "missions": [
+      {
+        "objClass": "org.sensorhub.impl.comm.mavlink2.config.MissionConfig",
+        "points": [
+          {
+            "objClass": "org.sensorhub.impl.comm.mavlink2.config.PointConfig",
+            "latitude": 24.18097034,
+            "longitude": 120.64360321,
+            "altitudeAGL": 15.0,
+            "hoverSeconds": 3.0
+          },
+          {
+            "objClass": "org.sensorhub.impl.comm.mavlink2.config.PointConfig",
+            "latitude": 24.18163587,
+            "longitude": 120.64138286,
+            "altitudeAGL": 15.0,
+            "hoverSeconds": 1.0
+          },
+          {
+            "objClass": "org.sensorhub.impl.comm.mavlink2.config.PointConfig",
+            "latitude": 24.17945118,
+            "longitude": 120.64204897,
+            "altitudeAGL": 10.0,
+            "hoverSeconds": 3.0
+          }
+        ]
+      }
+    ],
+    "SDKAddress": "127.0.0.1",
+    "SDKPort": 50051,
+    "lastUpdated": "2025-07-16T15:24:07.403-0500",
+    "id": "1fa37bed-c763-402f-b8b3-29d33b58489d",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.comm.mavlink2.UnmannedSystem",
+    "name": "New Unmanned System"
   }
 ]
