@@ -11,10 +11,19 @@
  ******************************* END LICENSE BLOCK ***************************/
 package org.sensorhub.impl.comm.mavlink2;
 
+import io.mavsdk.action.Action;
+import io.mavsdk.core.Core;
 import org.sensorhub.api.common.SensorHubException;
+import org.sensorhub.api.module.ModuleEvent;
 import org.sensorhub.impl.sensor.AbstractSensorModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
+import static java.lang.Math.abs;
+import static org.sensorhub.impl.comm.mavlink2.UnmannedOutput.*;
 
 /**
  * Driver implementation for the sensor.
@@ -23,13 +32,14 @@ import org.slf4j.LoggerFactory;
  * and performing initialization and shutdown for the driver and its outputs.
  */
 public class UnmannedSystem extends AbstractSensorModule<UnmannedConfig> {
-    static final String UID_PREFIX = "urn:osh:template_driver:";
-    static final String XML_PREFIX = "TEMPLATE_DRIVER_";
+    static final String UID_PREFIX = "urn:osh:driver:mavlink2:";
+    static final String XML_PREFIX = "MAVLINK2_DRIVER_";
 
     private static final Logger logger = LoggerFactory.getLogger(UnmannedSystem.class);
 
     UnmannedOutput output;
-    Thread processingThread;
+    io.mavsdk.System system;
+    boolean isConnected = false;
     volatile boolean doProcessing = true;
 
     UnmannedControlTakeoff unmannedControlTakeoff;
@@ -40,6 +50,21 @@ public class UnmannedSystem extends AbstractSensorModule<UnmannedConfig> {
     @Override
     public void doInit() throws SensorHubException {
         super.doInit();
+
+        initAsync = false;
+
+        reportStatus("Listening for system connection...");
+
+        io.mavsdk.System drone = new io.mavsdk.System(config.SDKAddress, config.SDKPort);
+        this.system = drone;
+        drone.getCore().getConnectionState()
+                .filter(Core.ConnectionState::getIsConnected)
+                .firstElement()
+                .subscribe(state -> {
+                    isConnected = true;
+                    setState(ModuleEvent.ModuleState.INITIALIZED);
+                    reportStatus("Successfully connected to a system");
+                }, e -> reportError("System not found", new IllegalStateException()));
 
         // Generate identifiers
         generateUniqueID(UID_PREFIX, config.serialNumber);
@@ -66,54 +91,139 @@ public class UnmannedSystem extends AbstractSensorModule<UnmannedConfig> {
         addControlInput(this.unmannedControlOffboard);
         unmannedControlOffboard.init();
 
-        output.doInit(unmannedControlLocation,unmannedControlLanding, unmannedControlTakeoff);
+        output.doInit();
     }
 
     @Override
     public void doStart() throws SensorHubException {
         super.doStart();
-        //startProcessing();
+        if (this.system != null && isConnected) {
+            output.subscribeTelemetry(system);
+            //setUpScenario(system);
+            //sendMission(system);
+        }
     }
 
     @Override
     public void doStop() throws SensorHubException {
         super.doStop();
-        stopProcessing();
+//        output.unsubscribe();
+        // TODO: Stop connection to outputs/control interfaces
     }
 
     @Override
     public boolean isConnected() {
-        return processingThread != null && processingThread.isAlive();
+        return system != null && isConnected;
     }
 
-    /**
-     * Starts the data processing thread.
-     * <p>
-     * This method simulates sensor data collection and processing by generating data samples at regular intervals.
-     */
-    public void startProcessing() {
-        doProcessing = true;
 
-        processingThread = new Thread(() -> {
-            while (doProcessing) {
-                // Simulate data collection and processing
-                //output.setData(System.currentTimeMillis(), "Sample Data");
+    private static void setUpScenario( io.mavsdk.System drone ) {
 
-                // Simulate a delay between data samples
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        });
-        processingThread.start();
+        System.out.println("Setting up scenario...");
+
+        CountDownLatch latch = new CountDownLatch(1);
+        //downloadLog(system);
+
+        //subscribeTelemetry(system);
+        //printVideoStreamInfo(system);
+
+        //printParams(system);
+        //printHealth(system);
+
+        //system.getOffboard().
+
+        //printTransponderInfo(system);
+
+        drone.getAction().arm()
+                .doOnComplete(() -> {
+
+                    System.out.println("Arming...");
+
+                    printDroneInfo(drone);
+
+                })
+                .doOnError(throwable -> {
+
+                    System.out.println("Failed to arm: " + ((Action.ActionException) throwable).getCode());
+
+                })
+                .andThen(drone.getAction().setTakeoffAltitude(homeAltitude))
+                .andThen(drone.getAction().takeoff()
+                        .doOnComplete(() -> {
+
+                            System.out.println("Taking off...");
+
+                        })
+                        .doOnError(throwable -> {
+
+                            System.out.println("Failed to take off: " + ((Action.ActionException) throwable).getCode());
+
+                        }))
+                .delay(5, TimeUnit.SECONDS)
+                .andThen(drone.getTelemetry().getPosition()
+                        .filter(pos -> pos.getRelativeAltitudeM() >= homeAltitude)
+                        .firstElement()
+                        .ignoreElement()
+                )
+                .delay(5, TimeUnit.SECONDS)
+                .andThen(drone.getAction().gotoLocation(destLatitude, destLongitude,
+                                destAltitude + drone.getTelemetry().getPosition().blockingFirst().getAbsoluteAltitudeM(),
+                                45.0F)
+                        .doOnComplete( () -> {
+
+                            System.out.println("Moving to target location");
+
+                        }))
+                .doOnError( throwable -> {
+
+                    System.out.println("Failed to go to target: " + ((Action.ActionException) throwable).getCode());
+
+                })
+                .andThen(drone.getTelemetry().getPosition()
+                        .filter(pos -> (abs(pos.getLatitudeDeg() - destLatitude) <= deltaSuccess && abs(pos.getLongitudeDeg() - destLongitude) <= deltaSuccess))
+                        .firstElement()
+                        .ignoreElement()
+                )
+                .delay( 8, TimeUnit.SECONDS )
+                .andThen(drone.getAction().gotoLocation(homeLatitude, homeLongitude,
+                        homeAltitude + drone.getTelemetry().getPosition().blockingFirst().getAbsoluteAltitudeM()
+                        , 0.0F))
+                .doOnComplete( () -> {
+
+                    System.out.println("Moving to landing location");
+
+                })
+                .doOnError( throwable -> {
+
+                    System.out.println("Failed to go to landing location: " + ((Action.ActionException) throwable).getCode());
+
+                })
+                .andThen(drone.getTelemetry().getPosition()
+                        .filter(pos -> (abs(pos.getLatitudeDeg() - homeLatitude) <= deltaSuccess && abs(pos.getLongitudeDeg() - homeLongitude) <= deltaSuccess))
+                        .firstElement()
+                        .ignoreElement()
+                )
+                .andThen(drone.getAction().land().doOnComplete(() -> {
+
+                            System.out.println("Landing...");
+
+                        })
+                        .doOnError(throwable -> {
+
+                            System.out.println("Failed to land: " + ((Action.ActionException) throwable).getCode());
+
+                        }))
+                .subscribe(latch::countDown, throwable -> {
+
+                    latch.countDown();
+
+                });
+
+        try {
+            latch.await();
+        } catch (InterruptedException ignored) {
+            // This is expected
+        }
     }
 
-    /**
-     * Signals the processing thread to stop.
-     */
-    public void stopProcessing() {
-        doProcessing = false;
-    }
 }
