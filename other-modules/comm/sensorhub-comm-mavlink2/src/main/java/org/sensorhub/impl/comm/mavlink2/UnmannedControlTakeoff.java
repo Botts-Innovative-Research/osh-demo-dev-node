@@ -16,16 +16,12 @@
 
 package org.sensorhub.impl.comm.mavlink2;
 
-import io.mavsdk.action.Action;
 import net.opengis.swe.v20.DataBlock;
 import net.opengis.swe.v20.DataComponent;
 import net.opengis.swe.v20.DataRecord;
 import org.sensorhub.api.command.CommandException;
 import org.sensorhub.impl.sensor.AbstractSensorControl;
 import org.vast.swe.helper.GeoPosHelper;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.abs;
 
@@ -62,12 +58,13 @@ public class UnmannedControlTakeoff extends AbstractSensorControl<UnmannedSystem
      */
     private static final String NODE_NAME_STR = "/SensorHub/spot/takeoff_control";
 
-    private io.mavsdk.System system = null;
+    private io.mavsdk.System system;
 
     static double deltaSuccess =   0.000003; //distance from lat/lon to determine success
 
     public UnmannedControlTakeoff( UnmannedSystem parentSensor) {
         super("mavTakeoffControl", parentSensor);
+        this.system = parentSensor.system;
     }
 
 

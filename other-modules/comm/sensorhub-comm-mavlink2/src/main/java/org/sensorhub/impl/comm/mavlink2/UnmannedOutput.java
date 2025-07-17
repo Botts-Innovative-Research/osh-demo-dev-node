@@ -253,6 +253,9 @@ public class UnmannedOutput extends AbstractSensorOutput<UnmannedSystem> {
 
     }
 
+    public void unsubscribe() {
+        // TODO: Unsubscribe
+    }
 
     public void subscribeTelemetry( io.mavsdk.System drone ) {
         drone.getTelemetry().getPosition()
@@ -380,7 +383,7 @@ public class UnmannedOutput extends AbstractSensorOutput<UnmannedSystem> {
 
     public static void printDroneInfo( io.mavsdk.System drone ) {
 
-//        drone.getCamera().getCameraList()
+//        system.getCamera().getCameraList()
 //            .subscribe( cameraListUpdate -> {
 //                 System.out.println("Camera 0 Model: " + cameraListUpdate.getCameras().get(0).getModelName());
 //             }, throwable -> {

@@ -64,6 +64,7 @@ public class UnmannedControlLanding extends AbstractSensorControl<UnmannedSystem
 
     public UnmannedControlLanding( UnmannedSystem parentSensor) {
         super("mavLandingControl", parentSensor);
+        this.system = parentSensor.system;
     }
 
 

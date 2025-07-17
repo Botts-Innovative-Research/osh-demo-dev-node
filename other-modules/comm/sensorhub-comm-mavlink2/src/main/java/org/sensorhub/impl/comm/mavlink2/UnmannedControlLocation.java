@@ -62,12 +62,13 @@ public class UnmannedControlLocation extends AbstractSensorControl<UnmannedSyste
      */
     private static final String NODE_NAME_STR = "/SensorHub/spot/location_control";
 
-    private io.mavsdk.System system = null;
+    private io.mavsdk.System system;
 
     static double deltaSuccess =   0.000005; //distance from lat/lon to determine success
 
     public UnmannedControlLocation( UnmannedSystem parentSensor) {
         super("mavControl", parentSensor);
+        this.system = parentSensor.system;
     }
 
 

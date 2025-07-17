@@ -74,6 +74,7 @@ public class UnmannedControlMission extends AbstractSensorControl<UnmannedSystem
 
     public UnmannedControlMission( UnmannedSystem parentSensor) {
         super("mavMissionControl", parentSensor);
+        this.system = parentSensor.system;
     }
 
 
@@ -120,7 +121,7 @@ public class UnmannedControlMission extends AbstractSensorControl<UnmannedSystem
 
 
     //Get the configuration
-    //build a mission for the drone
+    //build a mission for the system
     //send the mission via mavlink
 
 

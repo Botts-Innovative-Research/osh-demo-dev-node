@@ -64,6 +64,7 @@ public class UnmannedControlShell extends AbstractSensorControl<UnmannedSystem>
 
     public UnmannedControlShell( UnmannedSystem parentSensor) {
         super("mavShellControl", parentSensor);
+        this.system = parentSensor.system;
     }
 
 

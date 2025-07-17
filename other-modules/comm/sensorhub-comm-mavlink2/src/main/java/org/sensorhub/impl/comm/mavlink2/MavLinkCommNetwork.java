@@ -144,7 +144,7 @@ public class MavLinkCommNetwork extends AbstractModule<MavLinkNetworkConfig> imp
 
         private void receiveDrone( final IDeviceScanCallback callback ) {
 
-            System.out.println("Listening for drone connection...");
+            System.out.println("Listening for system connection...");
 
             io.mavsdk.System drone = new io.mavsdk.System();
             drone.getCore().getConnectionState()

@@ -14,6 +14,7 @@ package org.sensorhub.impl.comm.mavlink2;
 import io.mavsdk.action.Action;
 import io.mavsdk.core.Core;
 import org.sensorhub.api.common.SensorHubException;
+import org.sensorhub.api.module.ModuleEvent;
 import org.sensorhub.impl.sensor.AbstractSensorModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,8 @@ public class UnmannedSystem extends AbstractSensorModule<UnmannedConfig> {
     private static final Logger logger = LoggerFactory.getLogger(UnmannedSystem.class);
 
     UnmannedOutput output;
-    Thread processingThread;
+    io.mavsdk.System system;
+    boolean isConnected = false;
     volatile boolean doProcessing = true;
 
     UnmannedControlTakeoff unmannedControlTakeoff;
@@ -50,6 +52,21 @@ public class UnmannedSystem extends AbstractSensorModule<UnmannedConfig> {
     @Override
     public void doInit() throws SensorHubException {
         super.doInit();
+
+        initAsync = false;
+
+        reportStatus("Listening for system connection...");
+
+        io.mavsdk.System drone = new io.mavsdk.System(config.SDKAddress, config.SDKPort);
+        this.system = drone;
+        drone.getCore().getConnectionState()
+                .filter(Core.ConnectionState::getIsConnected)
+                .firstElement()
+                .subscribe(state -> {
+                    isConnected = true;
+                    setState(ModuleEvent.ModuleState.INITIALIZED);
+                    reportStatus("Successfully connected to a system");
+                }, e -> reportError("System not found", new IllegalStateException()));
 
         // Generate identifiers
         generateUniqueID(UID_PREFIX, config.serialNumber);
@@ -91,76 +108,23 @@ public class UnmannedSystem extends AbstractSensorModule<UnmannedConfig> {
     @Override
     public void doStart() throws SensorHubException {
         super.doStart();
-
-        receiveDrone();
-
-        //startProcessing();
+        if (this.system != null && isConnected) {
+            output.subscribeTelemetry(system);
+            //setUpScenario(system);
+            //sendMission(system);
+        }
     }
 
     @Override
     public void doStop() throws SensorHubException {
         super.doStop();
-        stopProcessing();
+        output.unsubscribe();
+        // TODO: Stop connection to outputs/control interfaces
     }
 
     @Override
     public boolean isConnected() {
-        return processingThread != null && processingThread.isAlive();
-    }
-
-    /**
-     * Starts the data processing thread.
-     * <p>
-     * This method simulates sensor data collection and processing by generating data samples at regular intervals.
-     */
-    public void startProcessing() {
-        doProcessing = true;
-
-        processingThread = new Thread(() -> {
-            while (doProcessing) {
-                // Simulate data collection and processing
-                //output.setData(System.currentTimeMillis(), "Sample Data");
-
-                // Simulate a delay between data samples
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        });
-        processingThread.start();
-    }
-
-    /**
-     * Signals the processing thread to stop.
-     */
-    public void stopProcessing() {
-        doProcessing = false;
-    }
-
-
-    private void receiveDrone( ) {
-
-        System.out.println("Listening for drone connection...");
-
-        io.mavsdk.System drone = new io.mavsdk.System(config.SDKAddress, config.SDKPort);
-        drone.getCore().getConnectionState()
-                .filter(Core.ConnectionState::getIsConnected)
-                .firstElement()
-                .subscribe(state -> {
-                    System.out.println("Drone connection detected.");
-
-                    unmannedControlLocation.setSystem(drone);
-                    unmannedControlTakeoff.setSystem(drone);
-                    unmannedControlLanding.setSystem(drone);
-                    unmannedControlMission.setSystem(drone);
-                    unmannedControlShell.setSystem(drone);
-                    output.subscribeTelemetry(drone);
-                    //setUpScenario(drone);
-                    //sendMission(drone);
-
-                });
+        return system != null && isConnected;
     }
 
 
@@ -169,17 +133,17 @@ public class UnmannedSystem extends AbstractSensorModule<UnmannedConfig> {
         System.out.println("Setting up scenario...");
 
         CountDownLatch latch = new CountDownLatch(1);
-        //downloadLog(drone);
+        //downloadLog(system);
 
-        //subscribeTelemetry(drone);
-        //printVideoStreamInfo(drone);
+        //subscribeTelemetry(system);
+        //printVideoStreamInfo(system);
 
-        //printParams(drone);
-        //printHealth(drone);
+        //printParams(system);
+        //printHealth(system);
 
-        //drone.getOffboard().
+        //system.getOffboard().
 
-        //printTransponderInfo(drone);
+        //printTransponderInfo(system);
 
         drone.getAction().arm()
                 .doOnComplete(() -> {
