@@ -293,7 +293,7 @@
       "zoomMax": 1,
       "zoomMin": 0
     },
-    "lastUpdated": "2025-07-12T13:19:21.307+0800",
+    "lastUpdated": "2025-07-12T00:19:21.307-0500",
     "id": "f5ffee01-95c4-4cee-bab1-5f558cc3419a",
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraDriver",
@@ -306,29 +306,6 @@
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.comm.mavlink2.MavLinkCommNetwork",
     "name": "New MAVLink"
-  },
-  {
-    "objClass": "org.sensorhub.impl.sensor.SensorSystemConfig",
-    "uniqueID": "8105965d-dcf6-40ad-a2fb-a719083e7054",
-    "subsystems": [
-      {
-        "objClass": "org.sensorhub.impl.sensor.SensorSystemConfig$SystemMember",
-        "config": {
-          "objClass": "org.sensorhub.impl.comm.mavlink2.UnmannedConfig",
-          "serialNumber": "sensor001",
-          "lastUpdated": "2025-07-12T13:26:34.806+0800",
-          "id": "c6fd4095-a96e-4706-ab1a-7f9427f74354",
-          "autoStart": true,
-          "moduleClass": "org.sensorhub.impl.comm.mavlink2.UnmannedSystem",
-          "name": "Unmanned System"
-        }
-      }
-    ],
-    "lastUpdated": "2025-07-12T13:26:34.787+0800",
-    "id": "1406a8d8-ccc5-4508-a1ba-be02fd7318cb",
-    "autoStart": true,
-    "moduleClass": "org.sensorhub.impl.sensor.SensorSystem",
-    "name": "MAVLink Connected Systems"
   },
   {
     "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
@@ -345,7 +322,7 @@
     "controllerLayerConfig": {
       "objClass": "com.botts.impl.sensor.universalcontroller.ControllerLayerConfig",
       "presets": [],
-      "lastUpdated": "2025-07-13T15:05:06.115+0800",
+      "lastUpdated": "2025-07-13T02:05:06.115-0500",
       "autoStart": false
     },
     "numControlStreams": 0,
@@ -355,7 +332,7 @@
       "GAMEPAD"
     ],
     "controllerSearchTime": 15,
-    "lastUpdated": "2025-07-13T15:05:06.114+0800",
+    "lastUpdated": "2025-07-13T02:05:06.114-0500",
     "id": "e5a64e1f-9011-47ec-b52e-ae47f8fe52bd",
     "autoStart": false,
     "moduleClass": "com.botts.impl.sensor.universalcontroller.UniversalControllerSensor",
@@ -422,7 +399,7 @@
     },
     "enableH264": false,
     "enableMJPEG": true,
-    "lastUpdated": "2025-07-14T13:20:46.221+0800",
+    "lastUpdated": "2025-07-14T00:20:46.221-0500",
     "id": "b4f99362-def9-4875-8dca-e654776f8866",
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.sensor.axis.AxisCameraDriver",
