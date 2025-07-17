@@ -40,12 +40,18 @@ public class UnmannedSystem extends AbstractSensorModule<UnmannedConfig> {
     Thread processingThread;
     volatile boolean doProcessing = true;
 
-    UnmannedControlTakeoff unmannedControlTakeoff;
-    UnmannedControlLocation unmannedControlLocation;
-    UnmannedControlLanding unmannedControlLanding;
-    UnmannedControlMission unmannedControlMission;
-    UnmannedControlOffboard unmannedControlOffboard;
-    UnmannedControlShell unmannedControlShell;
+    private UnmannedControlTakeoff unmannedControlTakeoff;
+    private UnmannedControlLocation unmannedControlLocation;
+    private UnmannedControlLanding unmannedControlLanding;
+    private UnmannedControlMission unmannedControlMission;
+    private UnmannedControlOffboard unmannedControlOffboard;
+    private UnmannedControlShell unmannedControlShell;
+
+    private io.mavsdk.System drone = null;
+
+    io.mavsdk.System getMavSystem() {
+        return drone;
+    }
 
     @Override
     public void doInit() throws SensorHubException {
@@ -144,7 +150,7 @@ public class UnmannedSystem extends AbstractSensorModule<UnmannedConfig> {
 
         System.out.println("Listening for drone connection...");
 
-        io.mavsdk.System drone = new io.mavsdk.System(config.SDKAddress, config.SDKPort);
+        drone = new io.mavsdk.System(config.SDKAddress, config.SDKPort);
         drone.getCore().getConnectionState()
                 .filter(Core.ConnectionState::getIsConnected)
                 .firstElement()

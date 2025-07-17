@@ -34,6 +34,7 @@ import static java.lang.Math.abs;
  * This particular class provides control stream  capabilities
  * </p>
  *
+ * @author Alex Almanza
  * @author Michael Stinson
  * @since Jul 2025
  */
