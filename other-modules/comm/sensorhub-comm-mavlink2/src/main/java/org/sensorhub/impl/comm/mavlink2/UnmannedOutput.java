@@ -126,7 +126,7 @@ public class UnmannedOutput extends AbstractSensorOutput<UnmannedSystem> {
 
         dataEncoding = sweFactory.newTextEncoding(",", "\n");
 
-        receiveDrone();
+//        receiveDrone();
     }
 
     @Override
@@ -453,15 +453,6 @@ public class UnmannedOutput extends AbstractSensorOutput<UnmannedSystem> {
                 .filter(Core.ConnectionState::getIsConnected)
                 .firstElement()
                 .subscribe(state -> {
-                    System.out.println("Drone connection detected.");
-
-                    unmannedControlLocation.setSystem(drone);
-                    unmannedControlTakeoff.setSystem(drone);
-                    unmannedControlLanding.setSystem(drone);
-                    parentSensor.unmannedControlOffboard.setSystem(drone);
-                    subscribeTelemetry(drone);
-                    //setUpScenario(drone);
-                    //sendMission(drone);
 
                 });
     }

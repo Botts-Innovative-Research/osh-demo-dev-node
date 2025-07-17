@@ -118,7 +118,6 @@
     "maxFois": 10,
     "defaultLiveTimeout": 600.0,
     "templateTimeout": 600,
-    "databaseID": "f7c4593b-ef06-4a6d-8120-3edd9b39bd30",
     "security": {
       "objClass": "org.sensorhub.api.security.SecurityConfig",
       "enableAccessControl": true,
@@ -456,5 +455,32 @@
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
     "name": "Controller PTZ"
+  },
+  {
+    "objClass": "org.sensorhub.impl.comm.mavlink2.UnmannedConfig",
+    "serialNumber": "sensor001",
+    "SDKAddress": "127.0.0.1",
+    "SDKPort": 50051,
+    "lastUpdated": "2025-07-17T16:10:04.240+0800",
+    "id": "3cff4e1a-c929-4034-8a1f-8c3905cc0b68",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.comm.mavlink2.UnmannedSystem",
+    "name": "New MAVLink Connection"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "dist/processes/android-to-drone.xml",
+    "id": "99682031-c31f-447d-abdc-e8ec3d40ca20",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "New SensorML Stream Process"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "dist/processes/android-to-drone.xml",
+    "id": "59ad9397-3837-4980-915d-c344f2148135",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "DRONE TO DRONE TEST"
   }
 ]

@@ -38,7 +38,7 @@ import static java.lang.Math.abs;
  */
 public class UnmannedControlLocation extends AbstractSensorControl<UnmannedSystem>
 {
-    private DataRecord commandDataStruct;
+    private DataComponent commandDataStruct;
 
     /**
      * Name of the control
@@ -66,7 +66,8 @@ public class UnmannedControlLocation extends AbstractSensorControl<UnmannedSyste
     static double deltaSuccess =   0.000003; //distance from lat/lon to determine success
 
     public UnmannedControlLocation( UnmannedSystem parentSensor) {
-        super("mavControl", parentSensor);
+        super("locationControl", parentSensor);
+        this.system = parentSensor.system;
     }
 
 
@@ -91,21 +92,16 @@ public class UnmannedControlLocation extends AbstractSensorControl<UnmannedSyste
                     .build())
          */
 
-        commandDataStruct = factory.createRecord()
-                .name(SENSOR_CONTROL_NAME)
-                .label(SENSOR_CONTROL_LABEL)
-                .description(SENSOR_CONTROL_DESCRIPTION)
-                .addField( "locationVectorLLA", factory.createVector()
-                        .addCoordinate("Latitude", factory.createQuantity()
-                                .uom("deg"))
-                        .addCoordinate("Longitude", factory.createQuantity()
-                                .uom("deg"))
-                        .addCoordinate("AltitudeAGL", factory.createQuantity()
-                                .uom("m")
-                                .value(30)))
-                .addField( "returnToStart", factory.createBoolean().value(false))
-                .addField( "hoverSeconds", factory.createCount().value(0))
-                .build();
+        commandDataStruct = factory.createVector()
+                .label("Location Vector LLA")
+                .addCoordinate("Latitude", factory.createQuantity()
+                        .uom("deg"))
+                .addCoordinate("Longitude", factory.createQuantity()
+                        .uom("deg"))
+                .addCoordinate("AltitudeAGL", factory.createQuantity()
+                        .uom("m")
+                        .value(30))
+            .build();
     }
 
 
@@ -115,13 +111,13 @@ public class UnmannedControlLocation extends AbstractSensorControl<UnmannedSyste
         double latitude = command.getDoubleValue(0);
         double longitude = command.getDoubleValue(1);
         double altitude = command.getDoubleValue(2);
-        boolean returnToStart = command.getBooleanValue(3);
-        long hoverSeconds = command.getLongValue(4);
+//        boolean returnToStart = command.getBooleanValue(3);
+//        long hoverSeconds = command.getLongValue(4);
 
         System.out.println("Command received - Lat: " + latitude + " Lon: " + longitude + " Alt: " + altitude );
 
         if ( system != null ) {
-            sendToLocation( latitude, longitude, altitude, returnToStart, hoverSeconds );
+            sendToLocation( latitude, longitude, altitude, false, 0 );
         } else {
             throw new CommandException("Unmanned System not initialized");
         }

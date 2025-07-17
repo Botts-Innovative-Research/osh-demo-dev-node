@@ -68,6 +68,7 @@ public class UnmannedControlOffboard extends AbstractSensorControl<UnmannedSyste
 
     public UnmannedControlOffboard(UnmannedSystem parentSensor) {
         super("offboardControl", parentSensor);
+        this.system = parentSensor.system;
     }
 
 

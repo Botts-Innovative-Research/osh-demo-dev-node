@@ -51,8 +51,6 @@ public class UnmannedSystem extends AbstractSensorModule<UnmannedConfig> {
     public void doInit() throws SensorHubException {
         super.doInit();
 
-        initAsync = false;
-
         reportStatus("Listening for system connection...");
 
         io.mavsdk.System drone = new io.mavsdk.System(config.SDKAddress, config.SDKPort);
@@ -62,7 +60,6 @@ public class UnmannedSystem extends AbstractSensorModule<UnmannedConfig> {
                 .firstElement()
                 .subscribe(state -> {
                     isConnected = true;
-                    setState(ModuleEvent.ModuleState.INITIALIZED);
                     reportStatus("Successfully connected to a system");
                 }, e -> reportError("System not found", new IllegalStateException()));
 

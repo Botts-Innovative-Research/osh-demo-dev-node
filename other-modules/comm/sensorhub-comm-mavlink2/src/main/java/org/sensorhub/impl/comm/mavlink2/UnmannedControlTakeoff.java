@@ -68,6 +68,7 @@ public class UnmannedControlTakeoff extends AbstractSensorControl<UnmannedSystem
 
     public UnmannedControlTakeoff( UnmannedSystem parentSensor) {
         super("mavTakeoffControl", parentSensor);
+        this.system = parentSensor.system;
     }
 
 

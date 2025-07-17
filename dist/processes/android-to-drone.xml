@@ -2,26 +2,26 @@
   <gml:identifier codeSpace="uid">4123123-59f4-48a3-84f2-76832fb4ff61</gml:identifier>
   <sml:outputs>
     <sml:OutputList>
-      <sml:output name="ptz">
+      <sml:output name="lla">
         <swe:DataRecord>
-          <swe:label>PTZ Command</swe:label>
-          <swe:description>PTZ command sent to camera device</swe:description>
-          <swe:field name="pan">
+          <swe:label>LLA</swe:label>
+          <swe:description>Location vector</swe:description>
+          <swe:field name="lat">
             <swe:Quantity definition="http://sensorml.com/ont/swe/property/PanAngle">
-              <swe:label>Pan</swe:label>
+              <swe:label>Latitude</swe:label>
               <swe:uom code="deg"/>
             </swe:Quantity>
           </swe:field>
-          <swe:field name="tilt">
+          <swe:field name="lon">
             <swe:Quantity definition="http://sensorml.com/ont/swe/property/TiltAngle">
-              <swe:label>Tilt</swe:label>
+              <swe:label>Longitude</swe:label>
               <swe:uom code="deg"/>
             </swe:Quantity>
           </swe:field>
-          <swe:field name="zoom">
+          <swe:field name="alt">
             <swe:Quantity definition="http://sensorml.com/ont/swe/property/ZoomFactor">
-              <swe:label>Zoom</swe:label>
-              <swe:uom code="1"/>
+              <swe:label>Altitude</swe:label>
+              <swe:uom code="m"/>
             </swe:Quantity>
           </swe:field>
         </swe:DataRecord>
@@ -31,29 +31,22 @@
   <sml:components>
     <sml:ComponentList>
       <sml:component name="android">
-        <sml:SimpleProcess gml:id="P1b">
+        <sml:SimpleProcess gml:id="P1">
           <sml:typeOf xlink:href="urn:osh:process:datasource:datastream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:lasertech:trupulse360:69a93cfe8e6b3fa6</sml:setValue>
-              <sml:setValue ref="parameters/outputName">targetloc</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:osh:driver:mavlink2:sensor001</sml:setValue>
+              <sml:setValue ref="parameters/outputName">SensorOutput</sml:setValue>
             </sml:Settings>
           </sml:configuration>
         </sml:SimpleProcess>
       </sml:component>
-      <sml:component name="geoPointing">
+      <sml:component name="altitudeProcess">
         <sml:SimpleProcess gml:id="P2">
-          <sml:typeOf xlink:href="urn:osh:process:PtzGeoPointing"/>
+          <sml:typeOf xlink:href="urn:osh:process:constAltitudeLLA"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="inputs/targetSize">1.0</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/lat">34.66595666</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/lon">-86.78059092</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/alt">169.0806884765625</sml:setValue>
-              <sml:setValue ref="parameters/camOrientation/heading">0.0</sml:setValue>
-              <sml:setValue ref="parameters/camOrientation/pitch">0.0</sml:setValue>
-              <sml:setValue ref="parameters/camOrientation/roll">0.0</sml:setValue>
-              <sml:setValue ref="parameters/camFovRange">10 30</sml:setValue>
+              <sml:setValue ref="parameters/altitude">15</sml:setValue>
             </sml:Settings>
           </sml:configuration>
         </sml:SimpleProcess>
@@ -63,8 +56,8 @@
           <sml:typeOf xlink:href="urn:osh:process:datasink:commandstream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:osh:template_driver:sensor001</sml:setValue>
-              <sml:setValue ref="parameters/inputName">mavControl</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:osh:driver:mavlink2:sensor001</sml:setValue>
+              <sml:setValue ref="parameters/inputName">locationControl</sml:setValue>
             </sml:Settings>
           </sml:configuration>
         </sml:SimpleProcess>
@@ -75,20 +68,20 @@
     <sml:ConnectionList>
       <sml:connection>
         <sml:Link>
-          <sml:source ref="components/trupulse/outputs/targetloc/location"/>
-          <sml:destination ref="components/drone/inputs/mavControl/locationVectorLLA"/>
+          <sml:source ref="components/android/outputs/SensorOutput/Location"/>
+          <sml:destination ref="components/altitudeProcess/inputs/locationInput"/>
         </sml:Link>
       </sml:connection>
       <sml:connection>
         <sml:Link>
-          <sml:source ref="components/geoPointing/outputs/ptz"/>
-          <sml:destination ref="components/camPtzControl/inputs/ptzControl/ptzPos"/>
+          <sml:source ref="components/altitudeProcess/outputs/locationOutput"/>
+          <sml:destination ref="components/drone/inputs/locationControl"/>
         </sml:Link>
       </sml:connection>
       <sml:connection>
         <sml:Link>
-          <sml:source ref="components/geoPointing/outputs/ptz"/>
-          <sml:destination ref="outputs/ptz"/>
+          <sml:source ref="components/altitudeProcess/outputs/locationOutput"/>
+          <sml:destination ref="outputs/lla"/>
         </sml:Link>
       </sml:connection>
     </sml:ConnectionList>

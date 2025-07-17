@@ -79,8 +79,14 @@
             </sml:connection>
             <sml:connection>
                 <sml:Link>
-                    <sml:source ref="components/mavlinkProcess/outputs/bodyVelocity"/>
-                    <sml:destination ref="components/drone/inputs/offboardControl"/>
+                    <sml:source ref="components/mavlinkProcess/outputs/velocity"/>
+                    <sml:destination ref="components/drone/inputs/offboardControl/velocity"/>
+                </sml:Link>
+            </sml:connection>
+            <sml:connection>
+                <sml:Link>
+                    <sml:source ref="components/mavlinkProcess/outputs/yawRate"/>
+                    <sml:destination ref="components/drone/inputs/offboardControl/yawRate"/>
                 </sml:Link>
             </sml:connection>
         </sml:ConnectionList>
