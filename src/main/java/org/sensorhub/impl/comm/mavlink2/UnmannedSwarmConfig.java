@@ -14,13 +14,13 @@ package org.sensorhub.impl.comm.mavlink2;
 import org.sensorhub.api.config.DisplayInfo;
 import org.sensorhub.api.sensor.SensorConfig;
 import org.sensorhub.impl.comm.mavlink2.config.MissionConfig;
+import org.sensorhub.impl.sensor.SensorSystemConfig;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * Configuration settings for the {@link UnmannedSystem} driver exposed via the OpenSensorHub Admin panel.
+ * Configuration settings for the {@link UnmannedSwarm} driver exposed via the OpenSensorHub Admin panel.
  * <p>
  * Public fields are exposed in the Admin panel for configuration by the user.
  * These fields can be annotated with the DisplayInfo annotation to provide additional information to the user
@@ -35,7 +35,7 @@ import java.util.UUID;
  * @author Michael Stinson
  * @since Jul 2025
  */
-public class UnmannedConfig extends SensorConfig {
+public class UnmannedSwarmConfig extends SensorSystemConfig {
     /**
      * The unique identifier for the configured sensor (or sensor platform).
      */
@@ -43,9 +43,10 @@ public class UnmannedConfig extends SensorConfig {
     @DisplayInfo(desc = "Serial number or unique identifier")
     public String serialNumber = UUID.randomUUID().toString();;
 
-    public List<MissionConfig> missions;
 
-    public String SDKAddress = "127.0.0.1";
-    public int SDKPort = 50051;
-    public String systemId;
+    public UnmannedSwarmConfig() {
+        this.uniqueID = UUID.randomUUID().toString();
+    };
+
+    public List<MissionConfig> missions;
 }

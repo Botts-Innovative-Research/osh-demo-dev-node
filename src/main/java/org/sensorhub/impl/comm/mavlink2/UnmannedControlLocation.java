@@ -67,7 +67,7 @@ public class UnmannedControlLocation extends AbstractSensorControl<UnmannedSyste
     static double deltaSuccess =   0.000005; //distance from lat/lon to determine success
 
     public UnmannedControlLocation( UnmannedSystem parentSensor) {
-        super("mavControl", parentSensor);
+        super("mavLocationControl", parentSensor);
     }
 
 
