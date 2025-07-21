@@ -3,9 +3,9 @@
  
 ### Repositories
 
-osh-node-dev-template
+osh-demo-dev-node
 
-https://github.com/opensensorhub/osh-node-dev-template.git
+https://github.com/Botts-Innovative-Research/osh-demo-dev-node/edit/main/README.md
 
 #### Requirements
 
@@ -18,7 +18,7 @@ For quick download and installation: [OpenLogic OpenJDK Downloads](https://www.o
 #### Synopsis
 The current “node” template source code of OpenSensorHub is located at GitLab.  The repositories contain the source code necessary to build a new OSH node, driver, processes, and libraries, but they also make use of the OpenSensorHub open source core and addons.  These open source technologies are referred to by the respective repositories they are employed in as "submodules." Therefore, it is important to note that when using git commands to “checkout” any one of these repositories, you do so with the following command:
  
-         git clone -–recursive https://github.com/opensensorhub/osh-node-dev-template.git
+         git clone -–recursive https://github.com/botts-innovative-research/osh-demo-dev-node.git
 
 ## Building and Deploying the Node
 
@@ -26,11 +26,11 @@ The current “node” template source code of OpenSensorHub is located at GitLa
 
 Building the Node with Jetty deployable web server from the command line is as simple as checking the repository out and building with a simple command
  
-         git clone --recursive https://github.com/opensensorhub/osh-node-dev-template.git
-         cd osh-node-template
-         ./gradlew build -x test
+         git clone --recursive https://github.com/Botts-Innovative-Research/osh-demo-dev-node/edit/main/README.md
+         cd osh-demo-dev-node
+         ./gradlew build -x test -x osgi
  
-The resulting build will be contained in /osh-node-template/build/distributions/osh-node-*.*.*.zip
+The resulting build will be contained in /osh-demo-dev-node/build/distributions/osh-node-*.*.*.zip
  
 Deploying is as simple as copying the zip file to the target destination and unzipping the file.  You can then run ./launch.sh in Linux or ./launch.bat in Windows environment to startup OpenSensorHub.
 
