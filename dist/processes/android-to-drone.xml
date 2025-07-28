@@ -35,8 +35,8 @@
           <sml:typeOf xlink:href="urn:osh:process:datasource:datastream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:osh:driver:mavlink2:sensor001</sml:setValue>
-              <sml:setValue ref="parameters/outputName">SensorOutput</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:android:device:69a93cfe8e6b3fa6</sml:setValue>
+              <sml:setValue ref="parameters/outputName">gps_data</sml:setValue>
             </sml:Settings>
           </sml:configuration>
         </sml:SimpleProcess>
@@ -46,7 +46,7 @@
           <sml:typeOf xlink:href="urn:osh:process:constAltitudeLLA"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/altitude">15</sml:setValue>
+              <sml:setValue ref="parameters/altitude">7</sml:setValue>
             </sml:Settings>
           </sml:configuration>
         </sml:SimpleProcess>
@@ -68,7 +68,7 @@
     <sml:ConnectionList>
       <sml:connection>
         <sml:Link>
-          <sml:source ref="components/android/outputs/SensorOutput/Location"/>
+          <sml:source ref="components/android/outputs/gps_data/location"/>
           <sml:destination ref="components/altitudeProcess/inputs/locationInput"/>
         </sml:Link>
       </sml:connection>

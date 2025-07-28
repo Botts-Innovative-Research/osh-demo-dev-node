@@ -118,6 +118,7 @@
     "maxFois": 10,
     "defaultLiveTimeout": 600.0,
     "templateTimeout": 600,
+    "databaseID": "f7c4593b-ef06-4a6d-8120-3edd9b39bd30",
     "security": {
       "objClass": "org.sensorhub.api.security.SecurityConfig",
       "enableAccessControl": true,
@@ -185,7 +186,11 @@
       "autoStart": false,
       "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase"
     },
-    "systemUIDs": [],
+    "systemUIDs": [
+      "urn:osh:driver:mavlink2:sensor001",
+      "urn:onvif:cam:000F0D3186F8:noVideo",
+      "urn:osh:sensor:ffmpeg:video001"
+    ],
     "autoPurgeConfig": [],
     "minCommitPeriod": 10000,
     "databaseNum": 1,
@@ -264,16 +269,16 @@
       "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$OnvifConfig",
       "autoRemoteHost": [],
       "onvifPath": "/onvif/device_service",
-      "remotePort": 2020,
-      "user": "oshtest",
-      "password": "oshtest",
+      "remotePort": 80,
+      "user": "admin",
+      "password": "admin",
       "enableTLS": false,
-      "remoteHost": "192.168.0.91",
+      "remoteHost": "192.168.0.101",
       "localAddress": "AUTO"
     },
     "streamingConfig": {
       "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$StreamingOptions",
-      "streamEndpoint": "rtsp://192.168.0.91:554/stream2",
+      "streamEndpoint": "rtsp://admin:admin@192.168.0.101:554/",
       "autoStreamEndpoint": [
         "rtsp://192.168.0.91:554/stream1",
         "rtsp://192.168.0.91:554/stream2",
@@ -417,7 +422,7 @@
   {
     "objClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabaseConfig",
     "indexObsLocation": false,
-    "storagePath": "sos.dat",
+    "storagePath": "demo1.dat",
     "memoryCacheSize": 5120,
     "autoCommitBufferSize": 1024,
     "autoCommitPeriod": 10,
@@ -482,5 +487,71 @@
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
     "name": "DRONE TO DRONE TEST"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "dist/processes/lrf-to-drone.xml",
+    "id": "8bd732e0-c93e-477a-8c31-5474461e5535",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "LRF to DRNE"
+  },
+  {
+    "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig",
+    "networkConfig": {
+      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$OnvifConfig",
+      "autoRemoteHost": [],
+      "onvifPath": "/onvif/device_service",
+      "remotePort": 80,
+      "user": "admin",
+      "password": "admin",
+      "enableTLS": false,
+      "remoteHost": "192.168.1.200",
+      "localAddress": "AUTO"
+    },
+    "streamingConfig": {
+      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$StreamingOptions",
+      "streamEndpoint": "rtsp://admin:admin@192.168.1.200/",
+      "autoStreamEndpoint": [
+        "rtsp://192.168.1.200:554/",
+        "rtsp://192.168.1.200:554/v2",
+        "rtsp://192.168.1.200:554/v3",
+        "rtsp://192.168.1.200:554/v4"
+      ],
+      "codec": "H_264"
+    },
+    "ptzRanges": {
+      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$PTZRanges",
+      "panMax": 180,
+      "panMin": -180,
+      "invertPan": false,
+      "tiltMax": 90,
+      "tiltMin": -56,
+      "invertTilt": false
+    },
+    "lastUpdated": "2025-07-18T10:06:02.770+0800",
+    "id": "5fc93a3d-6f0b-422a-a263-0039333926bd",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraDriver",
+    "name": "New ONVIF Driver"
+  },
+  {
+    "objClass": "org.sensorhub.impl.sensor.ffmpeg.config.FFMPEGConfig",
+    "serialNumber": "video001",
+    "connection": {
+      "objClass": "org.sensorhub.impl.sensor.ffmpeg.config.Connection",
+      "connectionString": "rtsp://admin:admin@192.168.1.200/",
+      "fps": 24,
+      "loop": false,
+      "injectExtradata": true
+    },
+    "positionConfig": {
+      "objClass": "org.sensorhub.api.sensor.PositionConfig"
+    },
+    "lastUpdated": "2025-07-18T10:20:07.880+0800",
+    "id": "63fff7cb-a556-4b68-b9f0-a46c3bf483bd",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.sensor.ffmpeg.FFMPEGSensor",
+    "name": "New FFMPEG Video Driver"
   }
 ]

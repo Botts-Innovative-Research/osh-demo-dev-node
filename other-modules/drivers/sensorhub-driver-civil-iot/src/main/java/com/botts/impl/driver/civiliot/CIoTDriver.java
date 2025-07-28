@@ -132,7 +132,6 @@ public class CIoTDriver extends AbstractSensorModule<CIoTDriverConfig> {
                     if (location != null)
                         feature = STAUtils.toGmlFeature(location, ""+id);
                 }
-                addFoi(feature);
 
                 // Get dimensions if possible
                 URL url = new URL(latestObs.getResult().toString().trim());
@@ -147,6 +146,7 @@ public class CIoTDriver extends AbstractSensorModule<CIoTDriverConfig> {
                         pollInterval*60);
                 output.init();
                 addOutput(output, false);
+                addFoi(feature);
 
                 // Create poller to handle output publishing
                 CIoTPoller poller = new CIoTPoller(url, pollInterval, output);

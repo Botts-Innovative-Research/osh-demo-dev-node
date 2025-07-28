@@ -47,9 +47,9 @@
           <sml:configuration>
             <sml:Settings>
               <sml:setValue ref="inputs/targetSize">1.0</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/lat">24.178585</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/lon">120.649793</sml:setValue>
-              <sml:setValue ref="parameters/camLocation/alt">140</sml:setValue>
+              <sml:setValue ref="parameters/camLocation/lat">24.18127201</sml:setValue>
+              <sml:setValue ref="parameters/camLocation/lon">120.64898217</sml:setValue>
+              <sml:setValue ref="parameters/camLocation/alt">130</sml:setValue>
               <sml:setValue ref="parameters/camOrientation/heading">0.0</sml:setValue>
               <sml:setValue ref="parameters/camOrientation/pitch">0.0</sml:setValue>
               <sml:setValue ref="parameters/camOrientation/roll">0.0</sml:setValue>
@@ -63,7 +63,7 @@
           <sml:typeOf xlink:href="urn:osh:process:datasink:commandstream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:axis:cam:00408CFBA322</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:onvif:cam:000F0D3186F8:noVideo</sml:setValue>
               <sml:setValue ref="parameters/inputName">ptzControl</sml:setValue>
             </sml:Settings>
           </sml:configuration>
