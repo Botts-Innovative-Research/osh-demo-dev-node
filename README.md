@@ -18,7 +18,7 @@ For quick download and installation: [OpenLogic OpenJDK Downloads](https://www.o
 #### Synopsis
 The current “node” template source code of OpenSensorHub is located at GitLab.  The repositories contain the source code necessary to build a new OSH node, driver, processes, and libraries, but they also make use of the OpenSensorHub open source core and addons.  These open source technologies are referred to by the respective repositories they are employed in as "submodules." Therefore, it is important to note that when using git commands to “checkout” any one of these repositories, you do so with the following command:
  
-         git clone -–recursive https://github.com/botts-innovative-research/osh-demo-dev-node.git
+         git clone --recursive https://github.com/botts-innovative-research/osh-demo-dev-node.git
 
 ## Building and Deploying the Node
 
