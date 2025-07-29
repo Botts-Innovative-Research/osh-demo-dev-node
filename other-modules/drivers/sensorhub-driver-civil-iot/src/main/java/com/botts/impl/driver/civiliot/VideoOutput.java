@@ -45,16 +45,6 @@ public class VideoOutput<T extends ISensorModule<?>> extends VarRateSensorOutput
      *
      * @param parentSensor         Sensor driver providing this output.
      * @param videoFrameDimensions The width and height of the video frame.
-     */
-    public VideoOutput(T parentSensor, int[] videoFrameDimensions) {
-        this(parentSensor, videoFrameDimensions, "video", "Video", "Video stream using ffmpeg library", 0.04167);
-    }
-
-    /**
-     * Creates a new video output.
-     *
-     * @param parentSensor         Sensor driver providing this output.
-     * @param videoFrameDimensions The width and height of the video frame.
      * @param name                 The name of the output.
      * @param outputLabel          The label of the output.
      * @param outputDescription    The description of the output.
@@ -154,10 +144,5 @@ public class VideoOutput<T extends ISensorModule<?>> extends VarRateSensorOutput
 
         eventHandler.publish(new DataEvent(latestRecordTime, this, foiUID, dataBlock));
     }
-
-    public void processBuffer(byte[] dataBuffer, long phenomenonTime) {
-        processBuffer(dataBuffer, phenomenonTime, null);
-    }
-
 
 }

@@ -84,6 +84,7 @@ public class CIoTDriver extends AbstractSensorModule<CIoTDriverConfig> {
         Asserts.checkNotNull(config.serialNumber, "config.serialNumber");
         Asserts.checkNotNull(staEndpointUrl, "SensorThings endpoint URL");
 
+        // Uncomment with correct trust store location for debug mode
 //        System.setProperty("javax.net.ssl.trustStore", "dist/scripts/truststore.jks");
 //        System.setProperty("javax.net.ssl.trustStorePassword", "changeit");
 
@@ -117,9 +118,11 @@ public class CIoTDriver extends AbstractSensorModule<CIoTDriverConfig> {
             }
 
             try {
+                // Retrieve datastream with specified ID from SensorThings API
                 Datastream datastream = sensorThingsService.datastreams().find(new IdLong((long)id), Expansion.of(EntityType.DATASTREAMS)
                         .with(ExpandedEntity.from(EntityType.OBSERVATIONS))
                         .with(ExpandedEntity.from(EntityType.THING, EntityType.LOCATIONS)));
+                // Retrieve latest observation, which will have a result = URL of image/video
                 Observation latestObs = datastream.getObservations().fullIterator().next();
 
                 AbstractFeature feature = null;

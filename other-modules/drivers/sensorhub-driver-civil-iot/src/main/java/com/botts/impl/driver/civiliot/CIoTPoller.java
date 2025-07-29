@@ -62,7 +62,7 @@ public class CIoTPoller  {
                 URL currentURL = CIoTUtils.getLatestURL(initialURL);
                 byte[] currentBuffer = ImageURLUtils.getBytes(currentURL);
                 long phenomenonTime = CIoTUtils.getImageTimestampUTC(currentURL);
-                // TODO Uncomment so that we aren't outputting the same frame multiple times
+                // Uncomment to prevent outputting the same frame multiple times. If this is uncommented, expect to wait 10-20 minutes for a new observation.
 //                if (latestBuffer == null || !Arrays.equals(latestBuffer, currentBuffer))
                     output.processBuffer(currentBuffer, phenomenonTime, foi != null ? foi.getUniqueIdentifier() : null);
                 latestBuffer = currentBuffer;
@@ -83,10 +83,6 @@ public class CIoTPoller  {
     public void setExecutor(ScheduledExecutorService executor) {
         stop();
         this.executor = executor;
-    }
-
-    public ScheduledExecutorService getExecutor() {
-        return executor;
     }
 
 }
