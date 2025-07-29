@@ -84,6 +84,9 @@ public class CIoTDriver extends AbstractSensorModule<CIoTDriverConfig> {
         Asserts.checkNotNull(config.serialNumber, "config.serialNumber");
         Asserts.checkNotNull(staEndpointUrl, "SensorThings endpoint URL");
 
+//        System.setProperty("javax.net.ssl.trustStore", "dist/scripts/truststore.jks");
+//        System.setProperty("javax.net.ssl.trustStorePassword", "changeit");
+
         // Generate identifiers
         generateUniqueID("urn:osh:driver:civiliot:video:", config.serialNumber);
         generateXmlID("CIVIL_IOT_VIDEO", config.serialNumber);
@@ -162,7 +165,9 @@ public class CIoTDriver extends AbstractSensorModule<CIoTDriverConfig> {
         if (getOutputs().isEmpty())
             throw new CompletionException("Requested data is not available from SensorThings API " + staEndpointUrl + ". Please check that Datastream IDs are valid", null);
 
-        if (!pollers.isEmpty() && executor == null) {
+        if (!pollers.isEmpty()) {
+            if (executor != null)
+                executor.shutdownNow();
             executor = Executors.newScheduledThreadPool(pollers.size());
             getLogger().debug("Created scheduled thread pool executor of size {}", pollers.size());
             for (var poller : pollers)

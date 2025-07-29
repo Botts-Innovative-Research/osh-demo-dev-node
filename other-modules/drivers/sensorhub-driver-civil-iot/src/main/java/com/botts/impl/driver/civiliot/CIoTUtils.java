@@ -18,11 +18,9 @@ package com.botts.impl.driver.civiliot;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class CIoTUtils {
     private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -40,6 +38,9 @@ public class CIoTUtils {
 
     public static long getImageTimestampUTC(URL url) throws IOException, ParseException {
         if (isTimestampedURL(url)) {
+            long hourOffset = ChronoUnit.HOURS.between(LocalDateTime.now(UTC), LocalDateTime.now(TAIWAN));
+            ZoneOffset offset = ZoneOffset.ofHours((int) hourOffset);
+
             String path = url.getPath();
             String[] parts = path.split("/");
 
@@ -48,7 +49,7 @@ public class CIoTUtils {
 
             String datetimeString = parts[3].substring(4).split("\\.")[0]; // Extract only digits
             LocalDateTime datetime = LocalDateTime.parse(datetimeString, dateTimeFormat);
-            return datetime.toInstant(ZoneOffset.UTC).toEpochMilli();
+            return datetime.toInstant(offset).toEpochMilli();
         } else {
             String utcString = url.openConnection().getHeaderField("imageutc").split("\\+")[0].trim();
             LocalDateTime utcDatetime = LocalDateTime.parse(utcString, headerDateTimeFormat);

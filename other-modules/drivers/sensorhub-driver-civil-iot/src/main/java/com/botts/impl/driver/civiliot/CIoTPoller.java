@@ -61,10 +61,10 @@ public class CIoTPoller  {
             try {
                 URL currentURL = CIoTUtils.getLatestURL(initialURL);
                 byte[] currentBuffer = ImageURLUtils.getBytes(currentURL);
-                long samplingTime = CIoTUtils.getImageTimestampUTC(currentURL);
+                long phenomenonTime = CIoTUtils.getImageTimestampUTC(currentURL);
                 // TODO Uncomment so that we aren't outputting the same frame multiple times
 //                if (latestBuffer == null || !Arrays.equals(latestBuffer, currentBuffer))
-                    output.processBuffer(currentBuffer, samplingTime, foi != null ? foi.getUniqueIdentifier() : null);
+                    output.processBuffer(currentBuffer, phenomenonTime, foi != null ? foi.getUniqueIdentifier() : null);
                 latestBuffer = currentBuffer;
             } catch (IOException e) {
                 System.out.println("Error renewing URL or getting buffer " + e.getMessage());
