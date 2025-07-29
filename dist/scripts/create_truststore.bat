@@ -1,61 +1,55 @@
 @echo off
-setlocal enabledelayedexpansion
+setlocal EnableDelayedExpansion
 
-REM === Truststore variables ===
+REM Truststore settings
 set TRUSTSTORE=truststore.jks
 set PASSWORD=changeit
 
-REM === Clean previous truststore and temp files ===
-if exist %TRUSTSTORE% del %TRUSTSTORE%
-if not exist certs mkdir certs
+REM Delete old truststore
+if exist "%TRUSTSTORE%" del /f "%TRUSTSTORE%"
 
-REM === Domains list ===
-set DOMAINS[0]=sta.ci.taiwan.gov.tw
-set DOMAINS[1]=iapi.wra.gov.tw
-set DOMAINS[2]=airtw.moenv.gov.tw
+REM Domains and ports
+set DOMAINS=sta.ci.taiwan.gov.tw iapi.wra.gov.tw airtw.moenv.gov.tw
+set PORTS=443 443 443
 
-set COUNT=0
+REM Certificate output directory
+set CERT_DIR=certs
+if not exist "%CERT_DIR%" mkdir "%CERT_DIR%"
 
-:loop
-set DOMAIN=!DOMAINS[%COUNT%]!
-if "!DOMAIN!"=="" goto done
+echo Creating truststore: %TRUSTSTORE%
 
-set CERTFILE=certs\!DOMAIN!.crt
-echo Fetching certificate from !DOMAIN!...
+set i=0
+for %%D in (%DOMAINS%) do (
+    call set DOMAIN=%%D
+    call set PORT=!PORTS:~0,3!
+    call set PORTS=!PORTS:~4!
 
-REM === Fetch certificate using OpenSSL ===
-echo | openssl s_client -servername !DOMAIN! -connect !DOMAIN!:443 -showcerts > temp_cert.txt
+    set ALIAS=site!i!
+    set CERT_FILE=%CERT_DIR%\!DOMAIN!.pem
 
-REM === Extract PEM certificate block ===
-setlocal DisableDelayedExpansion
-(
-    set "COPY=0"
-    for /f "usebackq delims=" %%L in ("temp_cert.txt") do (
-        set "LINE=%%L"
-        setlocal EnableDelayedExpansion
-        if "!LINE!"=="-----BEGIN CERTIFICATE-----" (
-            set "COPY=1"
-        )
-        if !COPY!==1 echo !LINE!
-        if "!LINE!"=="-----END CERTIFICATE-----" (
-            echo !LINE!
-            set "COPY=0"
-        )
-        endlocal
+    echo Fetching certificate from !DOMAIN!:!PORT!...
+
+    REM Use OpenSSL to get the cert
+    echo | openssl s_client -servername !DOMAIN! -connect !DOMAIN!:!PORT! -showcerts > temp_cert.txt
+
+    REM Extract just the PEM cert (first one only)
+    for /f "tokens=*" %%a in ('findstr /r "-----BEGIN CERTIFICATE-----" temp_cert.txt') do (
+        (
+            echo -----BEGIN CERTIFICATE-----
+            for /f "delims=" %%b in ('more +1 temp_cert.txt ^| findstr /v "CONNECTED"') do (
+                echo %%b
+                if "%%b"=="-----END CERTIFICATE-----" goto :done
+            )
+        ) > "!CERT_FILE!"
+        :done
     )
-) > "!CERTFILE!"
-endlocal
 
-REM === Import certificate to truststore ===
-echo Importing !DOMAIN! certificate...
-keytool -importcert -noprompt -alias site%COUNT% -file "!CERTFILE!" -keystore %TRUSTSTORE% -storepass %PASSWORD%
+    del temp_cert.txt
 
-set /a COUNT+=1
-goto loop
+    echo Importing !DOMAIN! certificate into truststore...
+    keytool -importcert -noprompt -alias !ALIAS! -file "!CERT_FILE!" -keystore "%TRUSTSTORE%" -storepass %PASSWORD%
 
-:done
-if exist temp_cert.txt del temp_cert.txt
-echo.
-echo Truststore %TRUSTSTORE% created with %COUNT% certificates.
-pause
-endlocal
+    set /a i+=1
+)
+
+echo Truststore %TRUSTSTORE% created successfully with %i% certificates.
