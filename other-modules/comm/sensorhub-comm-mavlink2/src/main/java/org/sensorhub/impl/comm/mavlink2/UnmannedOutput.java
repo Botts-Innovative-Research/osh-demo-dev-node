@@ -144,38 +144,73 @@ public class UnmannedOutput extends AbstractSensorOutput<UnmannedSystem> {
                 int index = 0;
                 // Populate the data block
 
-                if ( currentPosition != null && currentVelocity != null && currentImu != null ) {
+                if ( true ) {
                     dataBlock.setDoubleValue(index++, timestamp / 1000d);
 
                     //Location
-                    dataBlock.setDoubleValue(index++, currentPosition.getLatitudeDeg());
-                    dataBlock.setDoubleValue(index++, currentPosition.getLongitudeDeg());
-                    dataBlock.setDoubleValue(index++, currentPosition.getAbsoluteAltitudeM());
+                    if ( null != currentPosition ) {
+                        dataBlock.setDoubleValue(index++, currentPosition.getLatitudeDeg());
+                        dataBlock.setDoubleValue(index++, currentPosition.getLongitudeDeg());
+                        dataBlock.setDoubleValue(index++, currentPosition.getAbsoluteAltitudeM());
+                    } else {
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                    }
 
                     // Orientation
-                    dataBlock.setDoubleValue(index++, currentAttitude.getYawDeg());
-                    dataBlock.setDoubleValue(index++, currentAttitude.getPitchDeg());
-                    dataBlock.setDoubleValue(index++, currentAttitude.getRollDeg());
+                    if ( null != currentAttitude ) {
+                        dataBlock.setDoubleValue(index++, currentAttitude.getYawDeg());
+                        dataBlock.setDoubleValue(index++, currentAttitude.getPitchDeg());
+                        dataBlock.setDoubleValue(index++, currentAttitude.getRollDeg());
+                    } else {
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                    }
 
                     //Velocity
-                    dataBlock.setDoubleValue(index++, currentVelocity.getNorthMS());
-                    dataBlock.setDoubleValue(index++, currentVelocity.getEastMS());
-                    dataBlock.setDoubleValue(index++, currentVelocity.getDownMS());
+                    if ( null != currentVelocity ) {
+                        dataBlock.setDoubleValue(index++, currentVelocity.getNorthMS());
+                        dataBlock.setDoubleValue(index++, currentVelocity.getEastMS());
+                        dataBlock.setDoubleValue(index++, currentVelocity.getDownMS());
+                    } else {
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                    }
 
                     //Acceleration
-                    dataBlock.setDoubleValue(index++, currentImu.getAccelerationFrd().getForwardMS2());
-                    dataBlock.setDoubleValue(index++, currentImu.getAccelerationFrd().getRightMS2());
-                    dataBlock.setDoubleValue(index++, currentImu.getAccelerationFrd().getDownMS2());
-                    //Angular Velocity
-                    dataBlock.setDoubleValue(index++, currentImu.getAngularVelocityFrd().getForwardRadS());
-                    dataBlock.setDoubleValue(index++, currentImu.getAngularVelocityFrd().getRightRadS());
-                    dataBlock.setDoubleValue(index++, currentImu.getAngularVelocityFrd().getDownRadS());
-                    //Temperature
-                    dataBlock.setDoubleValue(index++, currentImu.getTemperatureDegc());
-                    //Magnetic Field
-                    dataBlock.setDoubleValue(index++, currentImu.getMagneticFieldFrd().getForwardGauss());
-                    dataBlock.setDoubleValue(index++, currentImu.getMagneticFieldFrd().getRightGauss());
-                    dataBlock.setDoubleValue(index++, currentImu.getMagneticFieldFrd().getDownGauss());
+                    if ( null != currentImu ) {
+                        dataBlock.setDoubleValue(index++, currentImu.getAccelerationFrd().getForwardMS2());
+                        dataBlock.setDoubleValue(index++, currentImu.getAccelerationFrd().getRightMS2());
+                        dataBlock.setDoubleValue(index++, currentImu.getAccelerationFrd().getDownMS2());
+                        //Angular Velocity
+                        dataBlock.setDoubleValue(index++, currentImu.getAngularVelocityFrd().getForwardRadS());
+                        dataBlock.setDoubleValue(index++, currentImu.getAngularVelocityFrd().getRightRadS());
+                        dataBlock.setDoubleValue(index++, currentImu.getAngularVelocityFrd().getDownRadS());
+                        //Temperature
+                        dataBlock.setDoubleValue(index++, currentImu.getTemperatureDegc());
+                        //Magnetic Field
+                        dataBlock.setDoubleValue(index++, currentImu.getMagneticFieldFrd().getForwardGauss());
+                        dataBlock.setDoubleValue(index++, currentImu.getMagneticFieldFrd().getRightGauss());
+                        dataBlock.setDoubleValue(index++, currentImu.getMagneticFieldFrd().getDownGauss());
+                    } else {
+
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        //Angular Velocity
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        //Temperature
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        //Magnetic Field
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                        dataBlock.setDoubleValue(index++, 0.0);
+                    }
                 }
 
             } finally {
