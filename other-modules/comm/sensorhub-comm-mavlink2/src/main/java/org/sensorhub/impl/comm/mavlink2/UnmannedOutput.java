@@ -161,26 +161,43 @@ public class UnmannedOutput extends AbstractSensorOutput<UnmannedSystem> {
             try {
                 int index = 0;
                 // Populate the data block
+                dataBlock.setDoubleValue(index++, timestamp / 1000d);
 
-                if ( currentPosition != null && currentVelocity != null && currentImu != null ) {
-                    dataBlock.setDoubleValue(index++, timestamp / 1000d);
-
-                    //Location
+                //Location
+                if ( null != currentPosition ) {
                     dataBlock.setDoubleValue(index++, currentPosition.getLatitudeDeg());
                     dataBlock.setDoubleValue(index++, currentPosition.getLongitudeDeg());
                     dataBlock.setDoubleValue(index++, currentPosition.getAbsoluteAltitudeM());
+                } else {
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                }
 
-                    // Orientation
+                // Orientation
+                if ( null != currentAttitude ) {
                     dataBlock.setDoubleValue(index++, currentAttitude.getYawDeg());
                     dataBlock.setDoubleValue(index++, currentAttitude.getPitchDeg());
                     dataBlock.setDoubleValue(index++, currentAttitude.getRollDeg());
+                } else {
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                }
 
-                    //Velocity
+                //Velocity
+                if ( null != currentVelocity ) {
                     dataBlock.setDoubleValue(index++, currentVelocity.getNorthMS());
                     dataBlock.setDoubleValue(index++, currentVelocity.getEastMS());
                     dataBlock.setDoubleValue(index++, currentVelocity.getDownMS());
+                } else {
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                }
 
-                    //Acceleration
+                //Acceleration
+                if ( null != currentImu ) {
                     dataBlock.setDoubleValue(index++, currentImu.getAccelerationFrd().getForwardMS2());
                     dataBlock.setDoubleValue(index++, currentImu.getAccelerationFrd().getRightMS2());
                     dataBlock.setDoubleValue(index++, currentImu.getAccelerationFrd().getDownMS2());
@@ -194,8 +211,22 @@ public class UnmannedOutput extends AbstractSensorOutput<UnmannedSystem> {
                     dataBlock.setDoubleValue(index++, currentImu.getMagneticFieldFrd().getForwardGauss());
                     dataBlock.setDoubleValue(index++, currentImu.getMagneticFieldFrd().getRightGauss());
                     dataBlock.setDoubleValue(index++, currentImu.getMagneticFieldFrd().getDownGauss());
-                }
+                } else {
 
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    //Angular Velocity
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    //Temperature
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    //Magnetic Field
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                    dataBlock.setDoubleValue(index++, 0.0);
+                }
             } finally {
                 lock.unlock();
             }
