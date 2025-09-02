@@ -56,7 +56,7 @@ dependencies {
 
   // Comm modules
   implementation project(':sensorhub-comm-ip-zeroconf')
-  implementation project(':sensorhub-comm-mavlink2')
+  implementation project(':sensorhub-comm-mavsdk')
 
 //  implementation project(':[storage-module-name]')
 //  implementation project(':[service-name]')

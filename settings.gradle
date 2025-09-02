@@ -6,6 +6,7 @@ def processDir = "$includeDir/osh-addons/processing"
 def serviceDir = "$includeDir/osh-addons/services"
 def commDir = "$includeDir/osh-addons/comm"
 def demoCommDir = "$rootDir/other-modules/comm"
+def bottsAddonsDir = "$includeDir/botts-addons"
 
 def toolsDir = "$rootDir/tools"
 
@@ -78,8 +79,8 @@ project(':sensorhub-service-mqtt-hivemq').projectDir = "$serviceDir/sensorhub-se
 include 'sensorhub-service-consys-mqtt'
 project(':sensorhub-service-consys-mqtt').projectDir = "$serviceDir/sensorhub-service-consys-mqtt" as File
 
-include 'sensorhub-comm-mavlink2'
-project(':sensorhub-comm-mavlink2').projectDir = "$demoCommDir/sensorhub-comm-mavlink2" as File
+include 'sensorhub-comm-mavsdk'
+project(':sensorhub-comm-mavsdk').projectDir = "$bottsAddonsDir/comm/sensorhub-comm-mavsdk" as File
 
 
 // Project modules
