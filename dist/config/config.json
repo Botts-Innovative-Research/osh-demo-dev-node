@@ -376,11 +376,11 @@
     "name": "New ONVIF Driver"
   },
   {
-    "objClass": "org.sensorhub.impl.comm.mavlink2.MavLinkNetworkConfig",
+    "objClass": "org.sensorhub.impl.comm.mavsdk.MavLinkNetworkConfig",
     "networkInterface": "utun7",
     "id": "6ed84a84-592d-421c-9a67-7f5fc4f54726",
     "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.comm.mavlink2.MavLinkCommNetwork",
+    "moduleClass": "org.sensorhub.impl.comm.mavsdk.MavLinkCommNetwork",
     "name": "New MAVLink"
   },
   {
@@ -390,12 +390,12 @@
       {
         "objClass": "org.sensorhub.impl.sensor.SensorSystemConfig$SystemMember",
         "config": {
-          "objClass": "org.sensorhub.impl.comm.mavlink2.UnmannedConfig",
+          "objClass": "org.sensorhub.impl.comm.mavsdk.UnmannedConfig",
           "serialNumber": "sensor001",
           "lastUpdated": "2025-07-12T13:26:34.806+0800",
           "id": "c6fd4095-a96e-4706-ab1a-7f9427f74354",
           "autoStart": true,
-          "moduleClass": "org.sensorhub.impl.comm.mavlink2.UnmannedSystem",
+          "moduleClass": "org.sensorhub.impl.comm.mavsdk.UnmannedSystem",
           "name": "Unmanned System"
         }
       }

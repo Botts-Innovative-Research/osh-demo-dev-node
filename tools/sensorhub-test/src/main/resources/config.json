@@ -286,11 +286,11 @@
     "name": "Connected Systems Database"
   },
   {
-    "objClass": "org.sensorhub.impl.comm.mavlink2.MavLinkNetworkConfig",
+    "objClass": "org.sensorhub.impl.comm.mavsdk.MavLinkNetworkConfig",
     "networkInterface": "utun7",
     "id": "6ed84a84-592d-421c-9a67-7f5fc4f54726",
     "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.comm.mavlink2.MavLinkCommNetwork",
+    "moduleClass": "org.sensorhub.impl.comm.mavsdk.MavLinkCommNetwork",
     "name": "New MAVLink"
   },
   {
@@ -353,14 +353,14 @@
     "name": "Axis 233D"
   },
   {
-    "objClass": "org.sensorhub.impl.comm.mavlink2.UnmannedConfig",
+    "objClass": "org.sensorhub.impl.comm.mavsdk.UnmannedConfig",
     "serialNumber": "f450",
     "SDKAddress": "127.0.0.1",
     "SDKPort": 50051,
     "lastUpdated": "2025-08-27T13:23:58.313-0500",
     "id": "67a7f148-ccaf-4cf8-9ac3-d30be65c6ff7",
     "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.comm.mavlink2.UnmannedSystem",
+    "moduleClass": "org.sensorhub.impl.comm.mavsdk.UnmannedSystem",
     "name": "MAVLink Drone (DIY)"
   },
   {
