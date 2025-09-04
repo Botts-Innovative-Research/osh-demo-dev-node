@@ -9,3 +9,4 @@
 [submodule "include/botts-addons"]
 	path = include/botts-addons
 	url = git@github.com:Botts-Innovative-Research/botts-addons.git
+	branch = main 
