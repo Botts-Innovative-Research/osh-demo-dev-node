@@ -35,7 +35,7 @@
           <sml:typeOf xlink:href="urn:osh:process:datasource:datastream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:osh:driver:mavlink2:sensor001</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:osh:driver:mavsdk:sensor001</sml:setValue>
               <sml:setValue ref="parameters/outputName">SensorOutput</sml:setValue>
             </sml:Settings>
           </sml:configuration>
@@ -56,7 +56,7 @@
           <sml:typeOf xlink:href="urn:osh:process:datasink:commandstream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:osh:driver:mavlink2:sensor001</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:osh:driver:mavsdk:sensor001</sml:setValue>
               <sml:setValue ref="parameters/inputName">locationControl</sml:setValue>
             </sml:Settings>
           </sml:configuration>

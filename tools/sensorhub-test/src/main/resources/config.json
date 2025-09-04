@@ -353,17 +353,6 @@
     "name": "Axis 233D"
   },
   {
-    "objClass": "org.sensorhub.impl.comm.mavsdk.UnmannedConfig",
-    "serialNumber": "f450",
-    "SDKAddress": "127.0.0.1",
-    "SDKPort": 50051,
-    "lastUpdated": "2025-08-27T13:23:58.313-0500",
-    "id": "67a7f148-ccaf-4cf8-9ac3-d30be65c6ff7",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.comm.mavsdk.UnmannedSystem",
-    "name": "MAVLink Drone (DIY)"
-  },
-  {
     "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
     "sensorML": "processes/drone-location-to-ptz.xml",
     "id": "0186d926-25fd-4145-9664-f076b48b1fb4",
