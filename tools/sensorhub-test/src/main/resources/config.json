@@ -375,5 +375,16 @@
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
     "name": "Laser tasking Drone"
+  },
+  {
+    "objClass": "org.sensorhub.impl.comm.mavsdk.UnmannedConfig",
+    "serialNumber": "ab349e56-c7d7-45f8-84e7-e863fb83f69f",
+    "SDKAddress": "127.0.0.1",
+    "SDKPort": 50051,
+    "lastUpdated": "2025-09-05T16:50:06.082-0500",
+    "id": "b9abe1f6-c080-4c06-a69d-4bf1f0340dd6",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.comm.mavsdk.UnmannedSystem",
+    "name": "New Unmanned System"
   }
 ]

@@ -97,6 +97,9 @@ distributions {
         from project.configurations.runtimeClasspath
         from 'other-modules/jars'
       }
+      into('natives/mavsdk') {
+        from 'include/botts-addons/comm/sensorhub-comm-mavsdk/dist'
+      }
       subprojects.each { p ->
         into('config/sensorML') {
           from("${p.projectDir}/sensorML")
