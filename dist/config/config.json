@@ -1,7 +1,7 @@
 [
   {
     "objClass": "org.sensorhub.impl.service.HttpServerConfig",
-    "httpPort": 8181,
+    "httpPort": 8282,
     "httpsPort": 0,
     "staticDocsRootUrl": "/",
     "staticDocsRootDir": "web",
@@ -187,7 +187,10 @@
       "autoStart": false,
       "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase"
     },
-    "systemUIDs": [],
+    "systemUIDs": [
+      "urn:axis:cam:00408CFBA322",
+      "urn:osh:*"
+    ],
     "autoPurgeConfig": [],
     "minCommitPeriod": 10000,
     "databaseNum": 1,
@@ -230,57 +233,6 @@
     "name": "Connected Systems API Service"
   },
   {
-    "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig",
-    "http": {
-      "objClass": "org.sensorhub.impl.comm.HTTPConfig",
-      "remotePort": 80,
-      "user": "root",
-      "password": "oshtest",
-      "enableTLS": true,
-      "remoteHost": "192.168.0.90",
-      "localAddress": "AUTO"
-    },
-    "rtsp": {
-      "objClass": "org.sensorhub.impl.sensor.rtpcam.RTSPConfig",
-      "videoPath": "/axis-media/media.amp?videocodec=h264",
-      "localUdpPort": 20100,
-      "onlyConnectRtsp": false,
-      "remotePort": 554,
-      "user": "root",
-      "password": "oshtest",
-      "enableTLS": false,
-      "remoteHost": "192.168.0.90",
-      "localAddress": "AUTO"
-    },
-    "connection": {
-      "objClass": "org.sensorhub.impl.comm.RobustIPConnectionConfig",
-      "checkReachability": true,
-      "connectTimeout": 3000,
-      "reconnectPeriod": 10000,
-      "reconnectAttempts": 0
-    },
-    "video": {
-      "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig$VideoConfig",
-      "resolution": "_4CIF",
-      "frameRate": 0,
-      "grayscale": false
-    },
-    "ptz": {
-      "objClass": "org.sensorhub.impl.sensor.videocam.ptz.PtzConfig",
-      "presets": []
-    },
-    "position": {
-      "objClass": "org.sensorhub.api.sensor.PositionConfig"
-    },
-    "enableH264": false,
-    "enableMJPEG": true,
-    "lastUpdated": "2025-07-09T10:41:06.554-0500",
-    "id": "bb829512-4d59-4be6-a406-ecc1e34e8dba",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.sensor.axis.AxisCameraDriver",
-    "name": "New Axis Video Camera"
-  },
-  {
     "objClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabaseConfig",
     "indexObsLocation": false,
     "storagePath": "sos.dat",
@@ -309,11 +261,11 @@
   },
   {
     "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
-    "sensorML": "processes/laser-range-finder-to-ptz.xml",
+    "sensorML": "processes/android-location-to-ptz.xml",
     "id": "678028ee-68e3-4f0e-938e-258104951905",
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
-    "name": "New SensorML Stream Process"
+    "name": "Android tasking PTZ"
   },
   {
     "objClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabaseConfig",
@@ -334,48 +286,6 @@
     "name": "Connected Systems Database"
   },
   {
-    "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig",
-    "networkConfig": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$OnvifConfig",
-      "autoRemoteHost": [
-        "http://192.168.0.91:2020/onvif/device_service"
-      ],
-      "onvifPath": "/onvif/device_service",
-      "remotePort": 2020,
-      "user": "oshtest",
-      "password": "oshtest",
-      "enableTLS": false,
-      "remoteHost": "192.168.0.91",
-      "localAddress": "AUTO"
-    },
-    "streamingConfig": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$StreamingOptions",
-      "streamEndpoint": "rtsp://192.168.0.91:554/stream2",
-      "autoStreamEndpoint": [
-        "rtsp://192.168.0.91:554/stream1",
-        "rtsp://192.168.0.91:554/stream2",
-        "rtsp://192.168.0.91:554/stream8"
-      ],
-      "codec": "H_264"
-    },
-    "ptzRanges": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$PTZRanges",
-      "panMax": 180,
-      "panMin": -180,
-      "invertPan": true,
-      "tiltMax": 90,
-      "tiltMin": -59,
-      "invertTilt": false,
-      "zoomMax": 1,
-      "zoomMin": 0
-    },
-    "lastUpdated": "2025-07-12T13:19:21.307+0800",
-    "id": "f5ffee01-95c4-4cee-bab1-5f558cc3419a",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraDriver",
-    "name": "New ONVIF Driver"
-  },
-  {
     "objClass": "org.sensorhub.impl.comm.mavsdk.MavLinkNetworkConfig",
     "networkInterface": "utun7",
     "id": "6ed84a84-592d-421c-9a67-7f5fc4f54726",
@@ -384,34 +294,97 @@
     "name": "New MAVLink"
   },
   {
-    "objClass": "org.sensorhub.impl.sensor.SensorSystemConfig",
-    "uniqueID": "8105965d-dcf6-40ad-a2fb-a719083e7054",
-    "subsystems": [
-      {
-        "objClass": "org.sensorhub.impl.sensor.SensorSystemConfig$SystemMember",
-        "config": {
-          "objClass": "org.sensorhub.impl.comm.mavsdk.UnmannedConfig",
-          "serialNumber": "sensor001",
-          "lastUpdated": "2025-07-12T13:26:34.806+0800",
-          "id": "c6fd4095-a96e-4706-ab1a-7f9427f74354",
-          "autoStart": true,
-          "moduleClass": "org.sensorhub.impl.comm.mavsdk.UnmannedSystem",
-          "name": "Unmanned System"
-        }
-      }
-    ],
-    "lastUpdated": "2025-07-12T13:26:34.787+0800",
-    "id": "1406a8d8-ccc5-4508-a1ba-be02fd7318cb",
-    "autoStart": true,
-    "moduleClass": "org.sensorhub.impl.sensor.SensorSystem",
-    "name": "MAVLink Connected Systems"
-  },
-  {
     "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
-    "sensorML": "dist/processes/drone-location-to-ptz-onvif.xml",
+    "sensorML": "processes/laser-range-finder-to-ptz.xml",
     "id": "623b092c-949c-4467-9e1f-0e2120dd9704",
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
-    "name": "New SensorML Stream Process"
+    "name": "Laser tasking PTZ"
+  },
+  {
+    "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig",
+    "http": {
+      "objClass": "org.sensorhub.impl.comm.HTTPConfig",
+      "remotePort": 80,
+      "user": "root",
+      "password": "oshtest",
+      "enableTLS": false,
+      "remoteHost": "192.168.8.10",
+      "localAddress": "AUTO"
+    },
+    "rtsp": {
+      "objClass": "org.sensorhub.impl.sensor.rtpcam.RTSPConfig",
+      "videoPath": "/axis-media/media.amp?videocodec=h264",
+      "localUdpPort": 20100,
+      "onlyConnectRtsp": false,
+      "remotePort": 554,
+      "user": "root",
+      "password": "oshtest",
+      "enableTLS": false,
+      "remoteHost": "192.168.8.10",
+      "localAddress": "AUTO"
+    },
+    "connection": {
+      "objClass": "org.sensorhub.impl.comm.RobustIPConnectionConfig",
+      "checkReachability": true,
+      "connectTimeout": 3000,
+      "reconnectPeriod": 10000,
+      "reconnectAttempts": 0
+    },
+    "video": {
+      "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig$VideoConfig",
+      "resolution": "_4CIF",
+      "frameRate": 0,
+      "grayscale": false
+    },
+    "ptz": {
+      "objClass": "org.sensorhub.impl.sensor.videocam.ptz.PtzConfig",
+      "presets": []
+    },
+    "position": {
+      "objClass": "org.sensorhub.api.sensor.PositionConfig"
+    },
+    "enableH264": false,
+    "enableMJPEG": true,
+    "lastUpdated": "2025-08-27T12:35:53.134-0500",
+    "id": "bf03a1bb-d5ce-4895-ad1d-8cc557fbe581",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.sensor.axis.AxisCameraDriver",
+    "name": "Axis 233D"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "processes/drone-location-to-ptz.xml",
+    "id": "0186d926-25fd-4145-9664-f076b48b1fb4",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "Drone tasking PTZ"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "processes/android-to-drone.xml",
+    "id": "5810b8c0-7f98-4114-8c4c-077422e0e6b9",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "Android tasking Drone"
+  },
+  {
+    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
+    "sensorML": "processes/lrf-to-drone.xml",
+    "id": "cdeae1ae-daf1-47c7-97e9-9be5bab60e3b",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
+    "name": "Laser tasking Drone"
+  },
+  {
+    "objClass": "org.sensorhub.impl.comm.mavsdk.UnmannedConfig",
+    "serialNumber": "ab349e56-c7d7-45f8-84e7-e863fb83f69f",
+    "SDKAddress": "127.0.0.1",
+    "SDKPort": 50051,
+    "lastUpdated": "2025-09-05T16:50:06.082-0500",
+    "id": "b9abe1f6-c080-4c06-a69d-4bf1f0340dd6",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.comm.mavsdk.UnmannedSystem",
+    "name": "New Unmanned System"
   }
 ]
