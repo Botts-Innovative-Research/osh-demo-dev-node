@@ -30,23 +30,12 @@
   </sml:outputs>
   <sml:components>
     <sml:ComponentList>
-      <sml:component name="androidPhone">
-        <sml:SimpleProcess gml:id="P1">
-          <sml:typeOf xlink:href="urn:osh:process:datasource:datastream"/>
-          <sml:configuration>
-            <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:android:device:69a93cfe8e6b3fa6</sml:setValue>
-              <sml:setValue ref="parameters/outputName">gps_data</sml:setValue>
-            </sml:Settings>
-          </sml:configuration>
-        </sml:SimpleProcess>
-      </sml:component>
       <sml:component name="trupulse">
         <sml:SimpleProcess gml:id="P1b">
           <sml:typeOf xlink:href="urn:osh:process:datasource:datastream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:lasertech:trupulse360:69a93cfe8e6b3fa6</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:lasertech:trupulse360:7ae57419dd427e4c</sml:setValue>
               <sml:setValue ref="parameters/outputName">targetloc</sml:setValue>
             </sml:Settings>
           </sml:configuration>

@@ -58,7 +58,7 @@
                     <sml:typeOf xlink:href="urn:osh:process:datasink:commandstream"/>
                     <sml:configuration>
                         <sml:Settings>
-                            <sml:setValue ref="parameters/systemUID">urn:osh:driver:mavsdk:ab349e56-c7d7-45f8-84e7-e863fb83f69f</sml:setValue>
+                            <sml:setValue ref="parameters/systemUID">urn:osh:driver:mavsdk:sensor001</sml:setValue>
                             <sml:setValue ref="parameters/inputName">mavControl</sml:setValue>
                         </sml:Settings>
                     </sml:configuration>

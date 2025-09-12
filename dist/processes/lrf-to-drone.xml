@@ -35,7 +35,7 @@
                     <sml:typeOf xlink:href="urn:osh:process:datasource:datastream"/>
                     <sml:configuration>
                         <sml:Settings>
-                            <sml:setValue ref="parameters/systemUID">urn:lasertech:trupulse360:69a93cfe8e6b3fa6</sml:setValue>
+                            <sml:setValue ref="parameters/systemUID">urn:lasertech:trupulse360:7ae57419dd427e4c</sml:setValue>
                             <sml:setValue ref="parameters/outputName">targetloc</sml:setValue>
                         </sml:Settings>
                     </sml:configuration>
@@ -46,7 +46,9 @@
                     <sml:typeOf xlink:href="urn:osh:process:constAltitudeLLA"/>
                     <sml:configuration>
                         <sml:Settings>
-                            <sml:setValue ref="parameters/altitude">5</sml:setValue>
+                            <sml:setValue ref="parameters/altitude">7</sml:setValue>
+                            <sml:setValue ref="parameters/returnToStart">false</sml:setValue>
+                            <sml:setValue ref="parameters/hoverSeconds">0</sml:setValue>
                         </sml:Settings>
                     </sml:configuration>
                 </sml:SimpleProcess>
@@ -57,7 +59,7 @@
                     <sml:configuration>
                         <sml:Settings>
                             <sml:setValue ref="parameters/systemUID">urn:osh:driver:mavsdk:sensor001</sml:setValue>
-                            <sml:setValue ref="parameters/inputName">locationControl</sml:setValue>
+                            <sml:setValue ref="parameters/inputName">mavControl</sml:setValue>
                         </sml:Settings>
                     </sml:configuration>
                 </sml:SimpleProcess>
@@ -75,12 +77,12 @@
             <sml:connection>
                 <sml:Link>
                     <sml:source ref="components/altitudeProcess/outputs/locationOutput"/>
-                    <sml:destination ref="components/drone/inputs/locationControl"/>
+                    <sml:destination ref="components/drone/inputs/mavControl"/>
                 </sml:Link>
             </sml:connection>
             <sml:connection>
                 <sml:Link>
-                    <sml:source ref="components/altitudeProcess/outputs/locationOutput"/>
+                    <sml:source ref="components/android/outputs/gps_data/location"/>
                     <sml:destination ref="outputs/lla"/>
                 </sml:Link>
             </sml:connection>

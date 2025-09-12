@@ -35,7 +35,7 @@
           <sml:typeOf xlink:href="urn:osh:process:datasource:datastream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:android:device:69a93cfe8e6b3fa6</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:android:device:7ae57419dd427e4c</sml:setValue>
               <sml:setValue ref="parameters/outputName">gps_data</sml:setValue>
             </sml:Settings>
           </sml:configuration>
@@ -63,7 +63,7 @@
           <sml:typeOf xlink:href="urn:osh:process:datasink:commandstream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:onvif:cam:000F0D3186F8:noVideo</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:axis:cam:00408CFBA322</sml:setValue>
               <sml:setValue ref="parameters/inputName">ptzControl</sml:setValue>
             </sml:Settings>
           </sml:configuration>

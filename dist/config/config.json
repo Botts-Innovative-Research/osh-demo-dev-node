@@ -188,7 +188,7 @@
       "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase"
     },
     "systemUIDs": [
-      "urn:axis:cam:00408CFBA322",
+      "urn:axis:cam:*",
       "urn:osh:*"
     ],
     "autoPurgeConfig": [],
@@ -251,15 +251,6 @@
     "name": "SOS Database"
   },
   {
-    "objClass": "org.sensorhub.impl.comm.zeroconf.IpNetworkConfig",
-    "networkInterface": "utun6",
-    "zeroConfHostName": "OSH",
-    "id": "affe452a-6bdc-4547-896c-606205485b92",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.comm.zeroconf.IpCommNetwork",
-    "name": "New IP Network (ZeroConf)"
-  },
-  {
     "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
     "sensorML": "processes/android-location-to-ptz.xml",
     "id": "678028ee-68e3-4f0e-938e-258104951905",
@@ -302,57 +293,6 @@
     "name": "Laser tasking PTZ"
   },
   {
-    "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig",
-    "http": {
-      "objClass": "org.sensorhub.impl.comm.HTTPConfig",
-      "remotePort": 80,
-      "user": "root",
-      "password": "oshtest",
-      "enableTLS": false,
-      "remoteHost": "192.168.8.10",
-      "localAddress": "AUTO"
-    },
-    "rtsp": {
-      "objClass": "org.sensorhub.impl.sensor.rtpcam.RTSPConfig",
-      "videoPath": "/axis-media/media.amp?videocodec=h264",
-      "localUdpPort": 20100,
-      "onlyConnectRtsp": false,
-      "remotePort": 554,
-      "user": "root",
-      "password": "oshtest",
-      "enableTLS": false,
-      "remoteHost": "192.168.8.10",
-      "localAddress": "AUTO"
-    },
-    "connection": {
-      "objClass": "org.sensorhub.impl.comm.RobustIPConnectionConfig",
-      "checkReachability": true,
-      "connectTimeout": 3000,
-      "reconnectPeriod": 10000,
-      "reconnectAttempts": 0
-    },
-    "video": {
-      "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig$VideoConfig",
-      "resolution": "_4CIF",
-      "frameRate": 0,
-      "grayscale": false
-    },
-    "ptz": {
-      "objClass": "org.sensorhub.impl.sensor.videocam.ptz.PtzConfig",
-      "presets": []
-    },
-    "position": {
-      "objClass": "org.sensorhub.api.sensor.PositionConfig"
-    },
-    "enableH264": false,
-    "enableMJPEG": true,
-    "lastUpdated": "2025-08-27T12:35:53.134-0500",
-    "id": "bf03a1bb-d5ce-4895-ad1d-8cc557fbe581",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.sensor.axis.AxisCameraDriver",
-    "name": "Axis 233D"
-  },
-  {
     "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
     "sensorML": "processes/drone-location-to-ptz.xml",
     "id": "0186d926-25fd-4145-9664-f076b48b1fb4",
@@ -378,13 +318,67 @@
   },
   {
     "objClass": "org.sensorhub.impl.comm.mavsdk.UnmannedConfig",
-    "serialNumber": "ab349e56-c7d7-45f8-84e7-e863fb83f69f",
+    "serialNumber": "sensor001",
+    "missions": [],
     "SDKAddress": "127.0.0.1",
     "SDKPort": 50051,
+    "ConnectString": "serial:///dev/tty.usbserial-0001:57600",
     "lastUpdated": "2025-09-05T16:50:06.082-0500",
     "id": "b9abe1f6-c080-4c06-a69d-4bf1f0340dd6",
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.comm.mavsdk.UnmannedSystem",
-    "name": "New Unmanned System"
+    "name": "DIY Drone"
+  },
+  {
+    "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig",
+    "http": {
+      "objClass": "org.sensorhub.impl.comm.HTTPConfig",
+      "remotePort": 80,
+      "user": "root",
+      "password": "oshtest123",
+      "enableTLS": false,
+      "remoteHost": "192.168.1.90",
+      "localAddress": "AUTO"
+    },
+    "rtsp": {
+      "objClass": "org.sensorhub.impl.sensor.rtpcam.RTSPConfig",
+      "videoPath": "/axis-media/media.amp?videocodec=h264",
+      "localUdpPort": 20100,
+      "onlyConnectRtsp": false,
+      "remotePort": 554,
+      "user": "root",
+      "password": "oshtest123",
+      "enableTLS": false,
+      "remoteHost": "192.168.1.90",
+      "localAddress": "AUTO"
+    },
+    "connection": {
+      "objClass": "org.sensorhub.impl.comm.RobustIPConnectionConfig",
+      "checkReachability": true,
+      "connectTimeout": 3000,
+      "reconnectPeriod": 10000,
+      "reconnectAttempts": 0
+    },
+    "video": {
+      "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig$VideoConfig",
+      "resolution": "_4CIF",
+      "frameRate": 0,
+      "grayscale": false
+    },
+    "ptz": {
+      "objClass": "org.sensorhub.impl.sensor.videocam.ptz.PtzConfig",
+      "presets": []
+    },
+    "position": {
+      "objClass": "org.sensorhub.api.sensor.PositionConfig"
+    },
+    "enableH264": false,
+    "enableMJPEG": true,
+    "lastUpdated": "2025-09-12T09:41:19.513-0500",
+    "id": "ae732cd0-5e9a-44e1-8098-90df3bdcd497",
+    "description": "Small Axis camera",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.sensor.axis.AxisCameraDriver",
+    "name": "Axis P5512"
   }
 ]

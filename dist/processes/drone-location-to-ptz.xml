@@ -63,7 +63,7 @@
           <sml:typeOf xlink:href="urn:osh:process:datasink:commandstream"/>
           <sml:configuration>
             <sml:Settings>
-              <sml:setValue ref="parameters/systemUID">urn:onvif:cam:000F0D3186F8:noVideo</sml:setValue>
+              <sml:setValue ref="parameters/systemUID">urn:axis:cam:00408CFBA322</sml:setValue>
               <sml:setValue ref="parameters/inputName">ptzControl</sml:setValue>
             </sml:Settings>
           </sml:configuration>
