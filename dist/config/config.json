@@ -1,7 +1,7 @@
 [
   {
     "objClass": "org.sensorhub.impl.service.HttpServerConfig",
-    "httpPort": 8181,
+    "httpPort": 8082,
     "httpsPort": 0,
     "staticDocsRootUrl": "/",
     "staticDocsRootDir": "web",
@@ -21,9 +21,9 @@
     "users": [
       {
         "objClass": "org.sensorhub.impl.security.BasicSecurityRealmConfig$UserConfig",
-        "id": "admin",
+        "id": "kraken",
         "name": "Administrator",
-        "password": "admin",
+        "password": "sdr",
         "roles": [
           "admin"
         ],
@@ -91,9 +91,23 @@
     "widgetSet": "org.sensorhub.ui.SensorHubWidgetSet",
     "bundleRepoUrls": [],
     "customPanels": [],
-    "customForms": [],
-    "deploymentName": "[Edit config.json \"deploymentName\" field]",
-    "enableLandingPage": false,
+    "customForms": [
+      {
+        "objClass": "org.sensorhub.ui.CustomUIConfig",
+        "configClass": "com.botts.impl.system.lane.config.LaneOptionsConfig",
+        "uiClass": "com.botts.ui.oscar.forms.LaneConfigForm"
+      },
+      {
+        "objClass": "org.sensorhub.ui.CustomUIConfig",
+        "configClass": "com.botts.impl.system.lane.config.LaneConfig",
+        "uiClass": "com.botts.ui.oscar.forms.LaneModuleConfigForm"
+      },
+      {
+        "objClass": "org.sensorhub.ui.CustomUIConfig",
+        "configClass": "org.sensorhub.impl.database.system.SystemDriverDatabaseConfig",
+        "uiClass": "com.botts.ui.oscar.forms.OccupancyVideoPurgeConfigForm"
+      }
+    ],
     "id": "5cb05c9c-9123-4fa1-8731-ffaa51489678",
     "autoStart": true,
     "moduleClass": "org.sensorhub.ui.AdminUIModule",
@@ -119,11 +133,11 @@
     "maxFois": 10,
     "defaultLiveTimeout": 600.0,
     "templateTimeout": 600,
-    "databaseID": "7c550188-3e3b-41e8-b099-645b3cd24287",
+    "databaseID": "06c57133-3f57-46fd-a806-927158d90dd4",
     "security": {
       "objClass": "org.sensorhub.api.security.SecurityConfig",
-      "enableAccessControl": true,
-      "requireAuth": true
+      "enableAccessControl": false,
+      "requireAuth": false
     },
     "enableTransactional": true,
     "ogcCapabilitiesInfo": {
@@ -171,44 +185,17 @@
     "name": "SOS Service"
   },
   {
-    "objClass": "org.sensorhub.impl.database.system.SystemDriverDatabaseConfig",
-    "dbConfig": {
-      "objClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabaseConfig",
-      "indexObsLocation": false,
-      "storagePath": "data.dat",
-      "memoryCacheSize": 5120,
-      "autoCommitBufferSize": 1024,
-      "autoCommitPeriod": 10,
-      "autoCompactFillRate": 40,
-      "idProviderType": "SEQUENTIAL",
-      "useCompression": false,
-      "readOnly": false,
-      "compactOnClose": false,
-      "autoStart": false,
-      "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase"
-    },
-    "systemUIDs": [],
-    "autoPurgeConfig": [],
-    "minCommitPeriod": 10000,
-    "databaseNum": 1,
-    "id": "29f2b677-95b1-4499-8e5b-459839ec3eb6",
-    "autoStart": true,
-    "moduleClass": "org.sensorhub.impl.database.system.SystemDriverDatabase",
-    "name": "System Driver Database"
-  },
-  {
     "objClass": "org.sensorhub.impl.service.consys.ConSysApiServiceConfig",
-    "databaseID": "6345af36-0123-4ec7-a19b-dd4acaf261bc",
+    "databaseID": "95474004-ffee-4c32-af32-4c5739dc53f4",
     "customFormats": [],
     "security": {
       "objClass": "org.sensorhub.api.security.SecurityConfig",
       "enableAccessControl": false,
       "requireAuth": false
     },
-    "enableTransactional": false,
+    "enableTransactional": true,
     "maxResponseLimit": 100000,
     "defaultLiveTimeout": 600.0,
-    "uriPrefixMap": [],
     "ogcCapabilitiesInfo": {
       "objClass": "org.sensorhub.impl.service.ogc.OGCServiceConfig$CapabilitiesInfo",
       "serviceProvider": {
@@ -224,66 +211,15 @@
     "enableHttpPOST": true,
     "enableSOAP": true,
     "endPoint": "/api",
-    "id": "2659dc3b-f243-477e-b43f-214b75cc8c57",
+    "id": "6697cb4a-2e99-4fee-bba6-d1202d24dea5",
     "autoStart": true,
     "moduleClass": "org.sensorhub.impl.service.consys.ConSysApiService",
     "name": "Connected Systems API Service"
   },
   {
-    "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig",
-    "http": {
-      "objClass": "org.sensorhub.impl.comm.HTTPConfig",
-      "remotePort": 80,
-      "user": "root",
-      "password": "oshtest",
-      "enableTLS": true,
-      "remoteHost": "192.168.0.90",
-      "localAddress": "AUTO"
-    },
-    "rtsp": {
-      "objClass": "org.sensorhub.impl.sensor.rtpcam.RTSPConfig",
-      "videoPath": "/axis-media/media.amp?videocodec=h264",
-      "localUdpPort": 20100,
-      "onlyConnectRtsp": false,
-      "remotePort": 554,
-      "user": "root",
-      "password": "oshtest",
-      "enableTLS": false,
-      "remoteHost": "192.168.0.90",
-      "localAddress": "AUTO"
-    },
-    "connection": {
-      "objClass": "org.sensorhub.impl.comm.RobustIPConnectionConfig",
-      "checkReachability": true,
-      "connectTimeout": 3000,
-      "reconnectPeriod": 10000,
-      "reconnectAttempts": 0
-    },
-    "video": {
-      "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig$VideoConfig",
-      "resolution": "_4CIF",
-      "frameRate": 0,
-      "grayscale": false
-    },
-    "ptz": {
-      "objClass": "org.sensorhub.impl.sensor.videocam.ptz.PtzConfig",
-      "presets": []
-    },
-    "position": {
-      "objClass": "org.sensorhub.api.sensor.PositionConfig"
-    },
-    "enableH264": false,
-    "enableMJPEG": true,
-    "lastUpdated": "2025-07-09T10:41:06.554-0500",
-    "id": "bb829512-4d59-4be6-a406-ecc1e34e8dba",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.sensor.axis.AxisCameraDriver",
-    "name": "New Axis Video Camera"
-  },
-  {
     "objClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabaseConfig",
     "indexObsLocation": false,
-    "storagePath": "sos.dat",
+    "storagePath": "sos.db",
     "memoryCacheSize": 5120,
     "autoCommitBufferSize": 1024,
     "autoCommitPeriod": 10,
@@ -293,32 +229,16 @@
     "readOnly": false,
     "compactOnClose": false,
     "databaseNum": 2,
-    "id": "7c550188-3e3b-41e8-b099-645b3cd24287",
+    "id": "06c57133-3f57-46fd-a806-927158d90dd4",
+    "description": "Database to store data pushed via SOS-T",
     "autoStart": true,
     "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase",
     "name": "SOS Database"
   },
   {
-    "objClass": "org.sensorhub.impl.comm.zeroconf.IpNetworkConfig",
-    "networkInterface": "utun6",
-    "zeroConfHostName": "OSH",
-    "id": "affe452a-6bdc-4547-896c-606205485b92",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.comm.zeroconf.IpCommNetwork",
-    "name": "New IP Network (ZeroConf)"
-  },
-  {
-    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
-    "sensorML": "processes/laser-range-finder-to-ptz.xml",
-    "id": "678028ee-68e3-4f0e-938e-258104951905",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
-    "name": "New SensorML Stream Process"
-  },
-  {
     "objClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabaseConfig",
     "indexObsLocation": false,
-    "storagePath": "csapi.dat",
+    "storagePath": "consys.db",
     "memoryCacheSize": 5120,
     "autoCommitBufferSize": 1024,
     "autoCommitPeriod": 10,
@@ -328,90 +248,10 @@
     "readOnly": false,
     "compactOnClose": false,
     "databaseNum": 3,
-    "id": "6345af36-0123-4ec7-a19b-dd4acaf261bc",
+    "id": "95474004-ffee-4c32-af32-4c5739dc53f4",
+    "description": "Database to store data pushed via Connected Systems API clients",
     "autoStart": true,
     "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase",
-    "name": "Connected Systems Database"
-  },
-  {
-    "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig",
-    "networkConfig": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$OnvifConfig",
-      "autoRemoteHost": [
-        "http://192.168.0.91:2020/onvif/device_service"
-      ],
-      "onvifPath": "/onvif/device_service",
-      "remotePort": 2020,
-      "user": "oshtest",
-      "password": "oshtest",
-      "enableTLS": false,
-      "remoteHost": "192.168.0.91",
-      "localAddress": "AUTO"
-    },
-    "streamingConfig": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$StreamingOptions",
-      "streamEndpoint": "rtsp://192.168.0.91:554/stream2",
-      "autoStreamEndpoint": [
-        "rtsp://192.168.0.91:554/stream1",
-        "rtsp://192.168.0.91:554/stream2",
-        "rtsp://192.168.0.91:554/stream8"
-      ],
-      "codec": "H_264"
-    },
-    "ptzRanges": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$PTZRanges",
-      "panMax": 180,
-      "panMin": -180,
-      "invertPan": true,
-      "tiltMax": 90,
-      "tiltMin": -59,
-      "invertTilt": false,
-      "zoomMax": 1,
-      "zoomMin": 0
-    },
-    "lastUpdated": "2025-07-12T13:19:21.307+0800",
-    "id": "f5ffee01-95c4-4cee-bab1-5f558cc3419a",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraDriver",
-    "name": "New ONVIF Driver"
-  },
-  {
-    "objClass": "org.sensorhub.impl.comm.mavlink2.MavLinkNetworkConfig",
-    "networkInterface": "utun7",
-    "id": "6ed84a84-592d-421c-9a67-7f5fc4f54726",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.comm.mavlink2.MavLinkCommNetwork",
-    "name": "New MAVLink"
-  },
-  {
-    "objClass": "org.sensorhub.impl.sensor.SensorSystemConfig",
-    "uniqueID": "8105965d-dcf6-40ad-a2fb-a719083e7054",
-    "subsystems": [
-      {
-        "objClass": "org.sensorhub.impl.sensor.SensorSystemConfig$SystemMember",
-        "config": {
-          "objClass": "org.sensorhub.impl.comm.mavlink2.UnmannedConfig",
-          "serialNumber": "sensor001",
-          "lastUpdated": "2025-07-12T13:26:34.806+0800",
-          "id": "c6fd4095-a96e-4706-ab1a-7f9427f74354",
-          "autoStart": true,
-          "moduleClass": "org.sensorhub.impl.comm.mavlink2.UnmannedSystem",
-          "name": "Unmanned System"
-        }
-      }
-    ],
-    "lastUpdated": "2025-07-12T13:26:34.787+0800",
-    "id": "1406a8d8-ccc5-4508-a1ba-be02fd7318cb",
-    "autoStart": true,
-    "moduleClass": "org.sensorhub.impl.sensor.SensorSystem",
-    "name": "MAVLink Connected Systems"
-  },
-  {
-    "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
-    "sensorML": "dist/processes/drone-location-to-ptz-onvif.xml",
-    "id": "623b092c-949c-4467-9e1f-0e2120dd9704",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
-    "name": "New SensorML Stream Process"
+    "name": "Connected Systems API Database"
   }
 ]

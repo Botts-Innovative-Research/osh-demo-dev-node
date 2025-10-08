@@ -1,6 +1,11 @@
 **/bin/
 **/target/
-**/build/
+#**/build/
+**/other-modules/
+**/sensorhub-driver-template/
+**/sensorhub-test
+
+**/processing/
 **/.gradle/
 **/.DStore
 **/.DS_Store

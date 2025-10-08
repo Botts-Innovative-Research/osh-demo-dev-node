@@ -1,0 +1,102 @@
+2025-10-08 15:01:31.711 INFO  [main] - *****************************************
+2025-10-08 15:01:31.713 INFO  [main] - Starting SensorHub...
+2025-10-08 15:01:31.724 INFO  [main] - Version: 2.0-beta2
+2025-10-08 15:01:31.727 INFO  [main] - Build number: 31bb52964
+2025-10-08 15:01:31.727 INFO  [main] - JDK version: OpenJDK 64-Bit Server VM, 21.0.7+6-adhoc.admin.jdk21u, OpenLogic
+2025-10-08 15:01:31.727 INFO  [main] - OS type: Mac OS X, x86_64
+2025-10-08 15:01:31.727 INFO  [main] - CPU cores: 8
+2025-10-08 15:01:31.729 INFO  [main] - CommonPool parallelism: 7
+2025-10-08 15:01:32.028 INFO  [main] - Module INITIALIZING
+2025-10-08 15:01:32.041 INFO  [main] - Module INITIALIZED
+2025-10-08 15:01:32.042 INFO  [main] - Module STARTING
+2025-10-08 15:01:32.061 INFO  [main] - Module INITIALIZING
+2025-10-08 15:01:32.079 INFO  [main] - Module INITIALIZED
+2025-10-08 15:01:32.080 INFO  [main] - Module STARTING
+2025-10-08 15:01:32.080 INFO  [main] - Module STARTED
+2025-10-08 15:01:32.080 INFO  [main] - Registering database SystemDriverDatabase with ID 0
+2025-10-08 15:01:32.081 INFO  [main] - Module STARTED
+2025-10-08 15:01:32.085 INFO  [main] - Loading modules...
+2025-10-08 15:01:32.097 DEBUG [main] - Module 'HTTP Server' [5cb05c9c-9e08-4fa1-8731-ffaa5846bdc1] loaded
+2025-10-08 15:01:32.099 DEBUG [main] - Creating publisher for urn:osh:modules
+2025-10-08 15:01:32.103 DEBUG [main] - Creating publisher for 5cb05c9c-9e08-4fa1-8731-ffaa5846bdc1
+2025-10-08 15:01:32.107 DEBUG [main] - Publisher group = urn:osh:modules
+2025-10-08 15:01:32.115 DEBUG [main] - Module 'Users' [bd112969-8838-4f62-8d10-1edf1baa6669] loaded
+2025-10-08 15:01:32.116 DEBUG [main] - Creating publisher for bd112969-8838-4f62-8d10-1edf1baa6669
+2025-10-08 15:01:32.116 DEBUG [main] - Publisher group = urn:osh:modules
+2025-10-08 15:01:32.126 DEBUG [main] - Module 'Admin UI' [5cb05c9c-9123-4fa1-8731-ffaa51489678] loaded
+2025-10-08 15:01:32.168 DEBUG [main] - Creating publisher for 5cb05c9c-9123-4fa1-8731-ffaa51489678
+2025-10-08 15:01:32.171 DEBUG [main] - Publisher group = urn:osh:modules
+2025-10-08 15:01:32.182 DEBUG [main] - Module 'SOS Service' [5cb05c9c-9e08-4fa1-8731-ff41e246bdc1] loaded
+2025-10-08 15:01:32.183 DEBUG [main] - Creating publisher for 5cb05c9c-9e08-4fa1-8731-ff41e246bdc1
+2025-10-08 15:01:32.183 DEBUG [main] - Publisher group = urn:osh:modules
+2025-10-08 15:01:32.191 DEBUG [main] - Module 'Connected Systems API Service' [6697cb4a-2e99-4fee-bba6-d1202d24dea5] loaded
+2025-10-08 15:01:32.191 DEBUG [main] - Creating publisher for 6697cb4a-2e99-4fee-bba6-d1202d24dea5
+2025-10-08 15:01:32.191 DEBUG [main] - Publisher group = urn:osh:modules
+2025-10-08 15:01:32.193 DEBUG [main] - Module 'SOS Database' [06c57133-3f57-46fd-a806-927158d90dd4] loaded
+2025-10-08 15:01:32.193 DEBUG [main] - Creating publisher for 06c57133-3f57-46fd-a806-927158d90dd4
+2025-10-08 15:01:32.193 DEBUG [main] - Publisher group = urn:osh:modules
+2025-10-08 15:01:32.194 DEBUG [main] - Module 'Connected Systems API Database' [95474004-ffee-4c32-af32-4c5739dc53f4] loaded
+2025-10-08 15:01:32.195 DEBUG [main] - Creating publisher for 95474004-ffee-4c32-af32-4c5739dc53f4
+2025-10-08 15:01:32.195 DEBUG [main] - Publisher group = urn:osh:modules
+2025-10-08 15:01:32.195 INFO  [main] - Starting datastore connectors
+2025-10-08 15:01:32.234 INFO  [ModuleRegistry-2] - Initializing module 'Connected Systems API Database' [95474004-ffee-4c32-af32-4c5739dc53f4]
+2025-10-08 15:01:32.234 INFO  [ModuleRegistry-1] - Initializing module 'SOS Database' [06c57133-3f57-46fd-a806-927158d90dd4]
+2025-10-08 15:01:32.239 INFO  [ModuleRegistry-2] - Module 'Connected Systems API Database' [95474004-ffee-4c32-af32-4c5739dc53f4] initialized
+2025-10-08 15:01:32.239 INFO  [ModuleRegistry-1] - Module 'SOS Database' [06c57133-3f57-46fd-a806-927158d90dd4] initialized
+2025-10-08 15:01:32.242 INFO  [ModuleRegistry-2] - Starting module 'Connected Systems API Database' [95474004-ffee-4c32-af32-4c5739dc53f4]
+2025-10-08 15:01:32.242 INFO  [ModuleRegistry-1] - Starting module 'SOS Database' [06c57133-3f57-46fd-a806-927158d90dd4]
+2025-10-08 15:01:32.317 DEBUG [ModuleRegistry-1] - Thread[#26,ModuleRegistry-1,5,main]: kryo=1447720730, classResolver=0
+2025-10-08 15:01:32.317 DEBUG [ModuleRegistry-2] - Thread[#27,ModuleRegistry-2,5,main]: kryo=709222530, classResolver=0
+2025-10-08 15:01:32.378 INFO  [ModuleRegistry-1] - Registering database MVObsSystemDatabase with ID 2
+2025-10-08 15:01:32.378 INFO  [ModuleRegistry-1] - Module 'SOS Database' [06c57133-3f57-46fd-a806-927158d90dd4] started
+2025-10-08 15:01:32.379 INFO  [ModuleRegistry-2] - Registering database MVObsSystemDatabase with ID 3
+2025-10-08 15:01:32.379 INFO  [ModuleRegistry-2] - Module 'Connected Systems API Database' [95474004-ffee-4c32-af32-4c5739dc53f4] started
+2025-10-08 15:01:32.379 INFO  [main] - All datastores ready. Starting all other modules
+2025-10-08 15:01:32.386 INFO  [ModuleRegistry-1] - Initializing module 'Admin UI' [5cb05c9c-9123-4fa1-8731-ffaa51489678]
+2025-10-08 15:01:32.395 INFO  [ModuleRegistry-1] - Module 'Admin UI' [5cb05c9c-9123-4fa1-8731-ffaa51489678] initialized
+2025-10-08 15:01:32.395 INFO  [ModuleRegistry-1] - Starting module 'Admin UI' [5cb05c9c-9123-4fa1-8731-ffaa51489678]
+2025-10-08 15:01:32.470 INFO  [ModuleRegistry-2] - Initializing module 'Users' [bd112969-8838-4f62-8d10-1edf1baa6669]
+2025-10-08 15:01:32.471 INFO  [ModuleRegistry-3] - Initializing module 'HTTP Server' [5cb05c9c-9e08-4fa1-8731-ffaa5846bdc1]
+2025-10-08 15:01:32.473 INFO  [ModuleRegistry-3] - Module 'HTTP Server' [5cb05c9c-9e08-4fa1-8731-ffaa5846bdc1] initialized
+2025-10-08 15:01:32.473 INFO  [ModuleRegistry-4] - Initializing module 'SOS Service' [5cb05c9c-9e08-4fa1-8731-ff41e246bdc1]
+2025-10-08 15:01:32.473 INFO  [ModuleRegistry-2] - Module 'Users' [bd112969-8838-4f62-8d10-1edf1baa6669] initialized
+2025-10-08 15:01:32.473 INFO  [ModuleRegistry-5] - Initializing module 'Connected Systems API Service' [6697cb4a-2e99-4fee-bba6-d1202d24dea5]
+2025-10-08 15:01:32.476 INFO  [ModuleRegistry-3] - Starting module 'HTTP Server' [5cb05c9c-9e08-4fa1-8731-ffaa5846bdc1]
+2025-10-08 15:01:32.478 INFO  [ModuleRegistry-2] - Starting module 'Users' [bd112969-8838-4f62-8d10-1edf1baa6669]
+2025-10-08 15:01:32.479 INFO  [ModuleRegistry-2] - Registering User Registry module {anonymous=org.sensorhub.impl.security.BasicSecurityRealmConfig$UserConfig@2d797965, kraken=org.sensorhub.impl.security.BasicSecurityRealmConfig$UserConfig@7d42fb28, sensor=org.sensorhub.impl.security.BasicSecurityRealmConfig$UserConfig@25f6bd12}
+2025-10-08 15:01:32.480 INFO  [ModuleRegistry-2] - Registering Authorizer module org.sensorhub.impl.security.DefaultAuthorizerImpl@3bf9d35c
+2025-10-08 15:01:32.480 INFO  [ModuleRegistry-2] - Module 'Users' [bd112969-8838-4f62-8d10-1edf1baa6669] started
+2025-10-08 15:01:32.487 INFO  [ModuleRegistry-5] - Module 'Connected Systems API Service' [6697cb4a-2e99-4fee-bba6-d1202d24dea5] initialized
+2025-10-08 15:01:32.488 INFO  [ModuleRegistry-5] - Starting module 'Connected Systems API Service' [6697cb4a-2e99-4fee-bba6-d1202d24dea5]
+2025-10-08 15:01:32.507 INFO  [ModuleRegistry-4] - Module 'SOS Service' [5cb05c9c-9e08-4fa1-8731-ff41e246bdc1] initialized
+2025-10-08 15:01:32.508 INFO  [ModuleRegistry-4] - Starting module 'SOS Service' [5cb05c9c-9e08-4fa1-8731-ff41e246bdc1]
+2025-10-08 15:01:32.715 INFO  [ModuleRegistry-3] - Module 'HTTP Server' [5cb05c9c-9e08-4fa1-8731-ffaa5846bdc1] started
+2025-10-08 15:01:32.840 INFO  [ModuleRegistry-3] - Module 'Admin UI' [5cb05c9c-9123-4fa1-8731-ffaa51489678] started
+2025-10-08 15:01:32.880 INFO  [ModuleRegistry-3] - Module 'Connected Systems API Service' [6697cb4a-2e99-4fee-bba6-d1202d24dea5] started
+2025-10-08 15:01:32.987 INFO  [ModuleRegistry-3] - Module 'SOS Service' [5cb05c9c-9e08-4fa1-8731-ff41e246bdc1] started
+2025-10-08 15:01:46.589 DEBUG [qtp1034008597-65] - Module 'New KrakenSDR' [f96776e3-0998-4fdd-8f45-86a3d0ce65b7] loaded
+2025-10-08 15:01:46.590 DEBUG [qtp1034008597-65] - Creating publisher for f96776e3-0998-4fdd-8f45-86a3d0ce65b7
+2025-10-08 15:01:46.591 DEBUG [qtp1034008597-65] - Publisher group = urn:osh:modules
+2025-10-08 15:02:09.588 INFO  [ModuleRegistry-6] - Initializing module 'New KrakenSDR' [f96776e3-0998-4fdd-8f45-86a3d0ce65b7]
+2025-10-08 15:02:09.637 ERROR [ModuleRegistry-6] - Failed to connect to: http://localhost:8081/settings.json
+Confirm that Kraken DOA Software Configuration is displaying this output
+2025-10-08 15:02:09.641 ERROR [ModuleRegistry-6] - Error in module 'New KrakenSDR' [f96776e3-0998-4fdd-8f45-86a3d0ce65b7]
+2025-10-08 15:02:34.985 INFO  [Thread-1] - Module registry shutdown initiated
+2025-10-08 15:02:34.991 INFO  [Thread-1] - Stopping all modules (saving config = false, saving state = true)
+2025-10-08 15:02:35.010 INFO  [ModuleRegistry-7] - Stopping module 'HTTP Server' [5cb05c9c-9e08-4fa1-8731-ffaa5846bdc1]
+2025-10-08 15:02:35.023 INFO  [ModuleRegistry-9] - Stopping module 'Admin UI' [5cb05c9c-9123-4fa1-8731-ffaa51489678]
+2025-10-08 15:02:35.023 INFO  [ModuleRegistry-8] - Stopping module 'Users' [bd112969-8838-4f62-8d10-1edf1baa6669]
+2025-10-08 15:02:35.023 INFO  [ModuleRegistry-11] - Stopping module 'Connected Systems API Service' [6697cb4a-2e99-4fee-bba6-d1202d24dea5]
+2025-10-08 15:02:35.023 INFO  [ModuleRegistry-10] - Stopping module 'SOS Service' [5cb05c9c-9e08-4fa1-8731-ff41e246bdc1]
+2025-10-08 15:02:35.023 INFO  [ModuleRegistry-8] - Unregistering User Registry module {anonymous=org.sensorhub.impl.security.BasicSecurityRealmConfig$UserConfig@2d797965, kraken=org.sensorhub.impl.security.BasicSecurityRealmConfig$UserConfig@7d42fb28, sensor=org.sensorhub.impl.security.BasicSecurityRealmConfig$UserConfig@25f6bd12}
+2025-10-08 15:02:35.025 INFO  [ModuleRegistry-11] - Module 'Connected Systems API Service' [6697cb4a-2e99-4fee-bba6-d1202d24dea5] stopped
+2025-10-08 15:02:35.026 INFO  [ModuleRegistry-8] - Unregistering Authorizer module org.sensorhub.impl.security.DefaultAuthorizerImpl@3bf9d35c
+2025-10-08 15:02:35.026 INFO  [ModuleRegistry-8] - Module 'Users' [bd112969-8838-4f62-8d10-1edf1baa6669] stopped
+2025-10-08 15:02:35.027 INFO  [ModuleRegistry-10] - Module 'SOS Service' [5cb05c9c-9e08-4fa1-8731-ff41e246bdc1] stopped
+2025-10-08 15:02:35.039 INFO  [ModuleRegistry-7] - Module 'HTTP Server' [5cb05c9c-9e08-4fa1-8731-ffaa5846bdc1] stopped
+2025-10-08 15:02:35.039 INFO  [ModuleRegistry-9] - Module 'Admin UI' [5cb05c9c-9123-4fa1-8731-ffaa51489678] stopped
+2025-10-08 15:02:35.145 INFO  [ModuleRegistry-9] - Stopping module 'SOS Database' [06c57133-3f57-46fd-a806-927158d90dd4]
+2025-10-08 15:02:35.145 INFO  [ModuleRegistry-7] - Stopping module 'Connected Systems API Database' [95474004-ffee-4c32-af32-4c5739dc53f4]
+2025-10-08 15:02:35.188 INFO  [ModuleRegistry-7] - Module 'Connected Systems API Database' [95474004-ffee-4c32-af32-4c5739dc53f4] stopped
+2025-10-08 15:02:35.188 INFO  [ModuleRegistry-9] - Module 'SOS Database' [06c57133-3f57-46fd-a806-927158d90dd4] stopped
+2025-10-08 15:02:35.248 INFO  [Thread-1] - SensorHub was cleanly stopped

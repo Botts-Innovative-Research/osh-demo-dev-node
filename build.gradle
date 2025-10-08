@@ -31,32 +31,33 @@ dependencies {
   implementation 'org.sensorhub:sensorhub-service-swe:' + oshCoreVersion
   implementation 'org.sensorhub:sensorhub-webui-core:' + oshCoreVersion
   implementation 'org.sensorhub:sensorhub-service-consys:' + oshCoreVersion
-  implementation project(':sensorhub-driver-template')
+//  implementation project(':sensorhub-driver-template')
 
   // Drivers
-  implementation project(':sensorhub-driver-onvif')
-  implementation project(':sensorhub-driver-axis')
-  implementation project(':sensorhub-driver-ffmpeg')
-  implementation project(':sensorhub-driver-fakeweather')
-  implementation project(':sensorhub-driver-f20')
-  implementation project(':sensorhub-driver-universalcontroller')
-  implementation project(':sensorhub-driver-civil-iot')
-  implementation project(':sensorhub-driver-datafeed')
+//  implementation project(':sensorhub-driver-onvif')
+//  implementation project(':sensorhub-driver-axis')
+//  implementation project(':sensorhub-driver-ffmpeg')
+//  implementation project(':sensorhub-driver-fakeweather')
+//  implementation project(':sensorhub-driver-f20')
+//  implementation project(':sensorhub-driver-universalcontroller')
+//  implementation project(':sensorhub-driver-civil-iot')
+//  implementation project(':sensorhub-driver-datafeed')
+  implementation project(':sensorhub-driver-krakenSDR')
 
   // Processes
-  implementation project(':sensorhub-process-fakeweather')
-  implementation project(':sensorhub-process-ffmpeg')
-  implementation project(':sensorhub-process-geoloc')
-  implementation project(':sensorhub-process-universalcontroller')
+//  implementation project(':sensorhub-process-fakeweather')
+//  implementation project(':sensorhub-process-ffmpeg')
+//  implementation project(':sensorhub-process-geoloc')
+//  implementation project(':sensorhub-process-universalcontroller')
 
   // Services
-  implementation project(':sensorhub-service-video')
-  implementation project(':sensorhub-service-mqtt-hivemq')
-  implementation project(':sensorhub-service-consys-mqtt')
+//  implementation project(':sensorhub-service-video')
+//  implementation project(':sensorhub-service-mqtt-hivemq')
+//  implementation project(':sensorhub-service-consys-mqtt')
 
   // Comm modules
-  implementation project(':sensorhub-comm-ip-zeroconf')
-  implementation project(':sensorhub-comm-mavlink2')
+//  implementation project(':sensorhub-comm-ip-zeroconf')
+//  implementation project(':sensorhub-comm-mavlink2')
 
 //  implementation project(':[storage-module-name]')
 //  implementation project(':[service-name]')
@@ -83,9 +84,9 @@ distributions {
       into ('config') {
         from 'dist/config'
       }
-      into ('processes') {
-        from 'dist/processes'
-      }
+//      into ('processes') {
+//        from 'dist/processes'
+//      }
       into ('natives') {
         from 'dist/natives'
       }
@@ -95,7 +96,7 @@ distributions {
       }
       into('lib') {
         from project.configurations.runtimeClasspath
-        from 'other-modules/jars'
+//        from 'other-modules/jars'
       }
       subprojects.each { p ->
         into('config/sensorML') {

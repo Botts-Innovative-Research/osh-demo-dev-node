@@ -1,0 +1,6 @@
+2025-10-08 15:01:32.468 INFO  [ModuleRegistry-2] - Module INITIALIZING
+2025-10-08 15:01:32.473 INFO  [ModuleRegistry-2] - Module INITIALIZED
+2025-10-08 15:01:32.476 INFO  [ModuleRegistry-2] - Module STARTING
+2025-10-08 15:01:32.480 INFO  [ModuleRegistry-2] - Module STARTED
+2025-10-08 15:02:35.022 INFO  [ModuleRegistry-8] - Module STOPPING
+2025-10-08 15:02:35.026 INFO  [ModuleRegistry-8] - Module STOPPED

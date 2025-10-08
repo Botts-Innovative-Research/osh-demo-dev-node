@@ -1,0 +1,12 @@
+2025-10-08 15:01:32.468 INFO  [ModuleRegistry-3] - Module INITIALIZING
+2025-10-08 15:01:32.472 INFO  [ModuleRegistry-3] - Module INITIALIZED
+2025-10-08 15:01:32.473 INFO  [ModuleRegistry-3] - Module STARTING
+2025-10-08 15:01:32.582 INFO  [ModuleRegistry-3] - Static resources root is /
+2025-10-08 15:01:32.593 INFO  [ModuleRegistry-3] - Servlets root is /sensorhub
+2025-10-08 15:01:32.713 INFO  [ModuleRegistry-3] - HTTP server started on port 8082
+2025-10-08 15:01:32.715 INFO  [ModuleRegistry-3] - Module STARTED
+2025-10-08 15:01:32.839 DEBUG [ModuleRegistry-3] - Servlet deployed [/admin/*, /VAADIN/*]=>org.sensorhub.ui.AdminUIServlet-53ce71f
+2025-10-08 15:01:32.879 DEBUG [ModuleRegistry-3] - Servlet deployed [/api/*]=>org.sensorhub.impl.service.consys.ConSysApiServlet-2f75c72d
+2025-10-08 15:01:32.987 DEBUG [ModuleRegistry-3] - Servlet deployed [/sos]=>org.sensorhub.impl.service.sos.SOSServlet-7dc72322
+2025-10-08 15:02:34.997 INFO  [ModuleRegistry-7] - Module STOPPING
+2025-10-08 15:02:35.039 INFO  [ModuleRegistry-7] - Module STOPPED

@@ -1,0 +1,14 @@
+{
+  "anonymous": {
+    "allow": [],
+    "deny": []
+  },
+  "kraken": {
+    "allow": [],
+    "deny": []
+  },
+  "sensor": {
+    "allow": [],
+    "deny": []
+  }
+}

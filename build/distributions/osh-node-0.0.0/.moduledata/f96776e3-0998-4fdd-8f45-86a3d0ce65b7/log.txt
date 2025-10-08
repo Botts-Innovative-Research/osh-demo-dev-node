@@ -1,0 +1,15 @@
+2025-10-08 15:02:09.587 INFO  [ModuleRegistry-6] - Module INITIALIZING
+2025-10-08 15:02:09.640 ERROR [ModuleRegistry-6] - Cannot initialize module 
+org.sensorhub.api.common.SensorHubException: Failed to connect to: (http://localhost:8081/settings.json). Confirm Kraken DOA Software Configuration is displaying to this this output
+	at NativeClassLoader//org.sensorhub.impl.sensor.krakenSDR.KrakenSdrSensor.doInit(KrakenSdrSensor.java:90)
+	at NativeClassLoader//org.sensorhub.impl.module.AbstractModule.init(AbstractModule.java:401)
+	at NativeClassLoader//org.sensorhub.impl.module.AbstractModule.updateConfig(AbstractModule.java:148)
+	at NativeClassLoader//org.sensorhub.impl.sensor.AbstractSensorModule.updateConfig(AbstractSensorModule.java:762)
+	at NativeClassLoader//org.sensorhub.impl.sensor.AbstractSensorModule.updateConfig(AbstractSensorModule.java:91)
+	at NativeClassLoader//org.sensorhub.impl.module.ModuleRegistry.lambda$updateModuleConfigAsync$4(ModuleRegistry.java:885)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-10-08 15:02:09.643 INFO  [ModuleRegistry-6] - Module LOADED

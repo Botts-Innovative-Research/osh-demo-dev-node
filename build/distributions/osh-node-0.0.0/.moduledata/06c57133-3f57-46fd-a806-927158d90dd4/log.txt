@@ -1,0 +1,18 @@
+2025-10-08 15:01:32.232 INFO  [ModuleRegistry-1] - Module INITIALIZING
+2025-10-08 15:01:32.239 INFO  [ModuleRegistry-1] - Module INITIALIZED
+2025-10-08 15:01:32.241 INFO  [ModuleRegistry-1] - Module STARTING
+2025-10-08 15:01:32.378 INFO  [ModuleRegistry-1] - Module STARTED
+2025-10-08 15:02:35.143 INFO  [ModuleRegistry-9] - Module STOPPING
+2025-10-08 15:02:35.185 DEBUG [ModuleRegistry-9] - H2 debug info for 'SOS Database':
+Created: 2025-10-08 15:01:32 (+0 s)
+Last modified: 2025-10-08 15:02:35 (+62 s)
+File length: 12288
+The last chunk is not listed
+Chunk length: 0
+Chunk count: 0
+Used space: 0%
+Chunk fill rate: 100%
+Chunk fill rate excluding empty chunks: 100%
+
+
+2025-10-08 15:02:35.188 INFO  [ModuleRegistry-9] - Module STOPPED

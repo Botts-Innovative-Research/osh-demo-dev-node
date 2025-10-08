@@ -1,0 +1,25 @@
+2025-10-08 15:01:32.164 ERROR [main] - Error while instantiating form builder for config class com.botts.impl.system.lane.config.LaneOptionsConfig
+java.lang.ClassNotFoundException: com.botts.ui.oscar.forms.LaneConfigForm
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:445)
+	at org.sensorhub.utils.NativeClassLoader.loadClass(NativeClassLoader.java:268)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:421)
+	at java.base/java.lang.Class.forName(Class.java:412)
+	at NativeClassLoader//org.sensorhub.ui.AdminUIModule.setConfiguration(AdminUIModule.java:106)
+	at NativeClassLoader//org.sensorhub.ui.AdminUIModule.setConfiguration(AdminUIModule.java:51)
+	at NativeClassLoader//org.sensorhub.impl.module.ModuleRegistry.loadModuleAsync(ModuleRegistry.java:290)
+	at NativeClassLoader//org.sensorhub.impl.module.ModuleRegistry.loadAllModules(ModuleRegistry.java:142)
+	at NativeClassLoader//org.sensorhub.impl.SensorHub.start(SensorHub.java:148)
+	at NativeClassLoader//org.sensorhub.impl.SensorHub.main(SensorHub.java:314)
+2025-10-08 15:01:32.380 INFO  [ModuleRegistry-1] - Module INITIALIZING
+2025-10-08 15:01:32.394 INFO  [ModuleRegistry-1] - Module INITIALIZED
+2025-10-08 15:01:32.395 INFO  [ModuleRegistry-1] - Module STARTING
+2025-10-08 15:01:32.840 INFO  [ModuleRegistry-3] - Module STARTED
+2025-10-08 15:01:41.104 INFO  [qtp1034008597-40] - New connection to admin UI (from ip=[0:0:0:0:0:0:0:1], user=kraken)
+2025-10-08 15:01:46.577 INFO  [qtp1034008597-65] - New UI action: Add New Module org.sensorhub.impl.sensor.krakenSDR.KrakenSdrSensor (from ip=[0:0:0:0:0:0:0:1], user=kraken)
+2025-10-08 15:02:06.928 INFO  [qtp1034008597-38] - New UI action: save_config (from ip=[0:0:0:0:0:0:0:1], user=kraken)
+2025-10-08 15:02:09.473 INFO  [qtp1034008597-66] - New UI action: Update Config 'New KrakenSDR' [f96776e3-0998-4fdd-8f45-86a3d0ce65b7] (from ip=[0:0:0:0:0:0:0:1], user=kraken)
+2025-10-08 15:02:12.422 INFO  [qtp1034008597-43] - New connection to admin UI (from ip=[0:0:0:0:0:0:0:1], user=kraken)
+2025-10-08 15:02:35.022 INFO  [ModuleRegistry-9] - Module STOPPING
+2025-10-08 15:02:35.039 INFO  [ModuleRegistry-9] - Module STOPPED
