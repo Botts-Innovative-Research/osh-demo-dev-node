@@ -1,1 +1,0 @@
-(self.webpackChunkOpenSensorViewer=self.webpackChunkOpenSensorViewer||[]).push([[726,320],{6854:()=>{},4616:()=>{}}]);

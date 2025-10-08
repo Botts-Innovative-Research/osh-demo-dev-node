@@ -5,3 +5,10 @@
 2025-10-08 15:01:32.987 INFO  [ModuleRegistry-3] - Module STARTED
 2025-10-08 15:02:35.023 INFO  [ModuleRegistry-10] - Module STOPPING
 2025-10-08 15:02:35.026 INFO  [ModuleRegistry-10] - Module STOPPED
+2025-10-08 15:14:20.805 INFO  [ModuleRegistry-4] - Module INITIALIZING
+2025-10-08 15:14:20.835 INFO  [ModuleRegistry-4] - Module INITIALIZED
+2025-10-08 15:14:20.835 INFO  [ModuleRegistry-4] - Module STARTING
+2025-10-08 15:14:21.321 DEBUG [ModuleRegistry-2] - Updating capabilities
+2025-10-08 15:14:21.327 INFO  [ModuleRegistry-2] - Module STARTED
+2025-10-08 15:15:21.505 INFO  [ModuleRegistry-9] - Module STOPPING
+2025-10-08 15:15:21.508 INFO  [ModuleRegistry-9] - Module STOPPED
