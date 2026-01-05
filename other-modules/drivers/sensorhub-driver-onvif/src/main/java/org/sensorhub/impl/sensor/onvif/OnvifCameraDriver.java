@@ -16,6 +16,7 @@ Developer are Copyright (C) 2014 the Initial Developer. All Rights Reserved.
 package org.sensorhub.impl.sensor.onvif;
 
 
+import java.lang.Object;
 import java.net.*;
 import java.util.List;
 import java.util.TreeSet;
@@ -23,6 +24,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 import de.onvif.discovery.OnvifDiscovery;
+import jakarta.xml.ws.BindingProvider;
+import org.onvif.ver10.media.wsdl.Media;
 import org.sensorhub.impl.sensor.AbstractSensorModule;
 import org.onvif.ver10.schema.*;
 import org.sensorhub.api.common.SensorHubException;
@@ -265,8 +268,27 @@ public class OnvifCameraDriver extends AbstractSensorModule<OnvifCameraConfig>
             }
         }
 
+        rewriteServiceEndpoint(camera.getMedia());
+        rewriteServiceEndpoint(camera.getPtz());
+        rewriteServiceEndpoint(camera.getImaging());
+        rewriteServiceEndpoint(camera.getDevice());
+        Media mediaService = camera.getMedia();
+        if (mediaService != null) {
+            BindingProvider bp = (BindingProvider) mediaService;
+            String currentUrl = (String) bp.getRequestContext()
+                    .get(BindingProvider.ENDPOINT_ADDRESS_PROPERTY);
+
+            // Replace internal IP with the configured remote host
+            if (currentUrl != null) {
+                String fixedUrl = rewriteToPublicHost(currentUrl,
+                        config.networkConfig.remoteHost, resolvePort);
+                bp.getRequestContext()
+                        .put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, fixedUrl);
+            }
+        }
+
         // ONVIF profiles
-        List<Profile> profiles = camera.getMedia().getProfiles();
+        List<Profile> profiles = mediaService.getProfiles();
         if (profiles == null || profiles.isEmpty()) {
             throw new SensorHubException("Camera does not have any profiles to use");
         }
@@ -390,6 +412,39 @@ public class OnvifCameraDriver extends AbstractSensorModule<OnvifCameraConfig>
             }
             log.trace("Stream endpoint: {}", visualConnectionString);
             setupStream();
+        }
+    }
+
+    private void rewriteServiceEndpoint(Object servicePort) {
+        if (servicePort == null) return;
+
+        try {
+            BindingProvider bp = (BindingProvider) servicePort;
+            String currentUrl = (String) bp.getRequestContext()
+                    .get(BindingProvider.ENDPOINT_ADDRESS_PROPERTY);
+
+            if (currentUrl != null) {
+                String resolvePort = (config.networkConfig.remotePort == 0) ? "" : ":" + config.networkConfig.remotePort;
+                String fixedUrl = rewriteToPublicHost(currentUrl,
+                        config.networkConfig.remoteHost, resolvePort);
+                bp.getRequestContext()
+                        .put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, fixedUrl);
+                log.debug("Rewrote service endpoint: {} -> {}", currentUrl, fixedUrl);
+            }
+        } catch (ClassCastException e) {
+            log.warn("Could not rewrite endpoint for service: {}", servicePort.getClass().getName());
+        }
+    }
+
+    private String rewriteToPublicHost(String endpoint, String publicHost, String port) {
+        try {
+            URI uri = new URI(endpoint);
+            String newHost = publicHost.replace("http://", "").replace("https://", "");
+            int newPort = port.isEmpty() ? uri.getPort() : Integer.parseInt(port.replace(":", ""));
+            return new URI(uri.getScheme(), null, newHost, newPort,
+                    uri.getPath(), uri.getQuery(), null).toString();
+        } catch (Exception e) {
+            return endpoint;
         }
     }
 

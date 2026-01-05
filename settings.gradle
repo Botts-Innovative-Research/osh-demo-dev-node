@@ -22,6 +22,9 @@ project(':sensorhub-test').projectDir = "$toolsDir/sensorhub-test" as File
 include 'sensorhub-driver-axis'
 project(':sensorhub-driver-axis').projectDir = "$sensorDir/video/sensorhub-driver-axis" as File
 
+include 'sensorhub-driver-dahua'
+project(':sensorhub-driver-dahua').projectDir = "$sensorDir/video/sensorhub-driver-dahua" as File
+
 include 'sensorhub-driver-rtpcam'
 project(':sensorhub-driver-rtpcam').projectDir = "$sensorDir/video/sensorhub-driver-rtpcam" as File
 

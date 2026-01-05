@@ -187,9 +187,7 @@
       "moduleClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabase"
     },
     "systemUIDs": [
-      "urn:osh:driver:mavlink2:sensor001",
-      "urn:onvif:cam:000F0D3186F8:noVideo",
-      "urn:osh:sensor:ffmpeg:video001"
+      "urn:osh:sensor:simweather:test"
     ],
     "autoPurgeConfig": [],
     "minCommitPeriod": 10000,
@@ -201,7 +199,7 @@
   },
   {
     "objClass": "org.sensorhub.impl.service.consys.ConSysApiServiceConfig",
-    "databaseID": "ffec2ddf-571c-43ea-b9f6-e88646342b09",
+    "databaseID": "29f2b677-95b1-4499-8e5b-459839ec3eb6",
     "customFormats": [],
     "security": {
       "objClass": "org.sensorhub.api.security.SecurityConfig",
@@ -264,75 +262,12 @@
     "name": "New SensorThings API Ingest Service"
   },
   {
-    "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig",
-    "networkConfig": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$OnvifConfig",
-      "autoRemoteHost": [],
-      "onvifPath": "/onvif/device_service",
-      "remotePort": 80,
-      "user": "admin",
-      "password": "admin",
-      "enableTLS": false,
-      "remoteHost": "192.168.0.101",
-      "localAddress": "AUTO"
-    },
-    "streamingConfig": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$StreamingOptions",
-      "streamEndpoint": "rtsp://admin:admin@192.168.0.101:554/",
-      "autoStreamEndpoint": [
-        "rtsp://192.168.0.91:554/stream1",
-        "rtsp://192.168.0.91:554/stream2",
-        "rtsp://192.168.0.91:554/stream8"
-      ],
-      "codec": "H_264"
-    },
-    "ptzRanges": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$PTZRanges",
-      "panMax": 180,
-      "panMin": -180,
-      "invertPan": true,
-      "tiltMax": 90,
-      "tiltMin": -59,
-      "invertTilt": false,
-      "zoomMax": 1,
-      "zoomMin": 0
-    },
-    "lastUpdated": "2025-07-12T13:19:21.307+0800",
-    "id": "f5ffee01-95c4-4cee-bab1-5f558cc3419a",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraDriver",
-    "name": "New ONVIF Driver"
-  },
-  {
     "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
     "sensorML": "dist/processes/drone-location-to-ptz-onvif.xml",
     "id": "623b092c-949c-4467-9e1f-0e2120dd9704",
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
     "name": "drone ptz onvif"
-  },
-  {
-    "objClass": "com.botts.impl.sensor.universalcontroller.UniversalControllerConfig",
-    "serialNumber": "001",
-    "primaryControllerIndex": 0,
-    "controllerLayerConfig": {
-      "objClass": "com.botts.impl.sensor.universalcontroller.ControllerLayerConfig",
-      "presets": [],
-      "lastUpdated": "2025-07-13T15:05:06.115+0800",
-      "autoStart": false
-    },
-    "numControlStreams": 0,
-    "primaryControlStreamIndex": 0,
-    "pollingRate": 250,
-    "controllerTypes": [
-      "GAMEPAD"
-    ],
-    "controllerSearchTime": 15,
-    "lastUpdated": "2025-07-13T15:05:06.114+0800",
-    "id": "e5a64e1f-9011-47ec-b52e-ae47f8fe52bd",
-    "autoStart": false,
-    "moduleClass": "com.botts.impl.sensor.universalcontroller.UniversalControllerSensor",
-    "name": "New Universal Controller Driver"
   },
   {
     "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
@@ -349,57 +284,6 @@
     "autoStart": false,
     "moduleClass": "org.sensorhub.impl.processing.SMLProcessImpl",
     "name": "Drone to PTZ"
-  },
-  {
-    "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig",
-    "http": {
-      "objClass": "org.sensorhub.impl.comm.HTTPConfig",
-      "remotePort": 80,
-      "user": "oshtest",
-      "password": "oshtest",
-      "enableTLS": false,
-      "remoteHost": "192.168.0.90",
-      "localAddress": "AUTO"
-    },
-    "rtsp": {
-      "objClass": "org.sensorhub.impl.sensor.rtpcam.RTSPConfig",
-      "videoPath": "/axis-media/media.amp?videocodec=h264",
-      "localUdpPort": 20100,
-      "onlyConnectRtsp": false,
-      "remotePort": 554,
-      "user": "oshtest",
-      "password": "oshtest",
-      "enableTLS": false,
-      "remoteHost": "192.168.0.90",
-      "localAddress": "AUTO"
-    },
-    "connection": {
-      "objClass": "org.sensorhub.impl.comm.RobustIPConnectionConfig",
-      "checkReachability": true,
-      "connectTimeout": 3000,
-      "reconnectPeriod": 10000,
-      "reconnectAttempts": 0
-    },
-    "video": {
-      "objClass": "org.sensorhub.impl.sensor.axis.AxisCameraConfig$VideoConfig",
-      "resolution": "_4CIF",
-      "frameRate": 0,
-      "grayscale": false
-    },
-    "ptz": {
-      "objClass": "org.sensorhub.impl.sensor.videocam.ptz.PtzConfig",
-      "presets": []
-    },
-    "position": {
-      "objClass": "org.sensorhub.api.sensor.PositionConfig"
-    },
-    "enableH264": false,
-    "enableMJPEG": true,
-    "lastUpdated": "2025-07-14T13:20:46.221+0800",
-    "id": "b4f99362-def9-4875-8dca-e654776f8866",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.sensor.axis.AxisCameraDriver",
-    "name": "New Axis Video Camera"
   },
   {
     "objClass": "org.sensorhub.impl.datastore.h2.MVObsSystemDatabaseConfig",
@@ -462,17 +346,6 @@
     "name": "Controller PTZ"
   },
   {
-    "objClass": "org.sensorhub.impl.comm.mavlink2.UnmannedConfig",
-    "serialNumber": "sensor001",
-    "SDKAddress": "127.0.0.1",
-    "SDKPort": 50051,
-    "lastUpdated": "2025-07-17T16:10:04.240+0800",
-    "id": "3cff4e1a-c929-4034-8a1f-8c3905cc0b68",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.comm.mavlink2.UnmannedSystem",
-    "name": "New MAVLink Connection"
-  },
-  {
     "objClass": "org.sensorhub.impl.processing.SMLProcessConfig",
     "sensorML": "dist/processes/android-to-drone.xml",
     "id": "99682031-c31f-447d-abdc-e8ec3d40ca20",
@@ -497,61 +370,45 @@
     "name": "LRF to DRNE"
   },
   {
-    "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig",
-    "networkConfig": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$OnvifConfig",
-      "autoRemoteHost": [],
-      "onvifPath": "/onvif/device_service",
-      "remotePort": 80,
+    "objClass": "org.sensorhub.impl.sensor.fakeweather.FakeWeatherConfig",
+    "serialNumber": "test",
+    "location": {
+      "objClass": "org.sensorhub.api.sensor.PositionConfig$LLALocation",
+      "lat": 34.8038,
+      "lon": -86.7228,
+      "alt": 0.0
+    },
+    "lastUpdated": "2025-11-17T16:35:14.529-0600",
+    "id": "dec3154d-0df5-4a08-b421-9facc046527e",
+    "autoStart": false,
+    "moduleClass": "org.sensorhub.impl.sensor.fakeweather.FakeWeatherSensor",
+    "name": "Test"
+  },
+  {
+    "objClass": "org.sensorhub.impl.service.consys.client.ConSysApiClientConfig",
+    "dataSourceSelector": {
+      "objClass": "org.sensorhub.impl.datastore.view.ObsSystemDatabaseViewConfig"
+    },
+    "conSys": {
+      "objClass": "org.sensorhub.impl.comm.HTTPConfig",
+      "resourcePath": "/sensorhub/api/",
+      "remotePort": 8282,
       "user": "admin",
       "password": "admin",
       "enableTLS": false,
-      "remoteHost": "192.168.1.200",
+      "remoteHost": "localhost",
       "localAddress": "AUTO"
     },
-    "streamingConfig": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$StreamingOptions",
-      "streamEndpoint": "rtsp://admin:admin@192.168.1.200/",
-      "autoStreamEndpoint": [
-        "rtsp://192.168.1.200:554/",
-        "rtsp://192.168.1.200:554/v2",
-        "rtsp://192.168.1.200:554/v3",
-        "rtsp://192.168.1.200:554/v4"
-      ],
-      "codec": "H_264"
-    },
-    "ptzRanges": {
-      "objClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraConfig$PTZRanges",
-      "panMax": 180,
-      "panMin": -180,
-      "invertPan": false,
-      "tiltMax": 90,
-      "tiltMin": -56,
-      "invertTilt": false
-    },
-    "lastUpdated": "2025-07-18T10:06:02.770+0800",
-    "id": "5fc93a3d-6f0b-422a-a263-0039333926bd",
-    "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.sensor.onvif.OnvifCameraDriver",
-    "name": "New ONVIF Driver"
-  },
-  {
-    "objClass": "org.sensorhub.impl.sensor.ffmpeg.config.FFMPEGConfig",
-    "serialNumber": "video001",
     "connection": {
-      "objClass": "org.sensorhub.impl.sensor.ffmpeg.config.Connection",
-      "connectionString": "rtsp://admin:admin@192.168.1.200/",
-      "fps": 24,
-      "loop": false,
-      "injectExtradata": true
+      "objClass": "org.sensorhub.impl.comm.RobustIPConnectionConfig",
+      "checkReachability": true,
+      "connectTimeout": 3000,
+      "reconnectPeriod": 10000,
+      "reconnectAttempts": 0
     },
-    "positionConfig": {
-      "objClass": "org.sensorhub.api.sensor.PositionConfig"
-    },
-    "lastUpdated": "2025-07-18T10:20:07.880+0800",
-    "id": "63fff7cb-a556-4b68-b9f0-a46c3bf483bd",
+    "id": "07aa2ea3-f4a6-416e-b21f-71c1dedccbf0",
     "autoStart": false,
-    "moduleClass": "org.sensorhub.impl.sensor.ffmpeg.FFMPEGSensor",
-    "name": "New FFMPEG Video Driver"
+    "moduleClass": "org.sensorhub.impl.service.consys.client.ConSysApiClientModule",
+    "name": "New Connected Systems Client"
   }
 ]

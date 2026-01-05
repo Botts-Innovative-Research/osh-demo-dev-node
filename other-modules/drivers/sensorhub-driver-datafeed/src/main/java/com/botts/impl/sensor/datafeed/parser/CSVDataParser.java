@@ -1,6 +1,5 @@
 package com.botts.impl.sensor.datafeed.parser;
 
-import com.botts.api.sensor.datafeed.parser.AbstractDataParser;
 import com.botts.impl.sensor.datafeed.data.DataField;
 import com.botts.impl.sensor.datafeed.parser.config.CSVDataParserConfig;
 import net.opengis.swe.v20.DataComponent;
